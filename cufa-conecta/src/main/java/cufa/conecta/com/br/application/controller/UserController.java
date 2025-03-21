@@ -1,8 +1,12 @@
 package cufa.conecta.com.br.application.controller;
 
-import cufa.conecta.com.br.application.UserResponseDto;
+import cufa.conecta.com.br.application.response.EmpresaResponseDto;
+import cufa.conecta.com.br.application.response.UserResponseDto;
+import cufa.conecta.com.br.application.request.EmpresaRequestDto;
 import cufa.conecta.com.br.application.request.UserRequestDto;
+import cufa.conecta.com.br.domain.service.EmpresaService;
 import cufa.conecta.com.br.domain.service.UserService;
+import cufa.conecta.com.br.model.EmpresaData;
 import cufa.conecta.com.br.model.UserData;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -14,12 +18,14 @@ import java.util.List;
 public class UserController {
     UserService service;
 
-    public UserController(UserService service) { this.service = service; }
+    public UserController(UserService service) {
+        this.service = service;
+    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void cadastrarUsuario(@RequestBody UserRequestDto userDto) {
-        UserData data = userDto.toModel();
+    public void cadastrarUsuario(@RequestBody UserRequestDto usuarioDto) {
+        UserData data = usuarioDto.toModel();
 
         service.cadastrarUsuario(data);
     }
@@ -41,11 +47,11 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public void atualizarUsuario(@PathVariable Integer id, @RequestBody UserRequestDto usuarioDto) {
-        UserData usuarioParaAtualizar = usuarioDto.toModel();
-        usuarioParaAtualizar.setId(id);
+    public void atualizarEmpresa(@PathVariable Integer id, @RequestBody UserRequestDto userDto) {
+        UserData usuarioAtualizado = userDto.toModel();
+        usuarioAtualizado.setId(id);
 
-        service.atualizarUsuario(usuarioParaAtualizar);
+        service.atualizarUsuario(usuarioAtualizado);
     }
 
     @DeleteMapping("/{id}")

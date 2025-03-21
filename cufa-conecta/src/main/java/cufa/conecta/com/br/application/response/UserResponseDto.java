@@ -1,10 +1,14 @@
-package cufa.conecta.com.br.application;
+package cufa.conecta.com.br.application.response;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import cufa.conecta.com.br.model.UserData;
 
 public class UserResponseDto {
+    @JsonProperty("nome")
     String nome;
+    @JsonProperty("email")
     String email;
+    @JsonProperty("senha")
     String senha;
 
     public UserResponseDto(String nome, String email, String senha) {

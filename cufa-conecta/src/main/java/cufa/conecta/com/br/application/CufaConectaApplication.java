@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication(scanBasePackages = {"cufa.conecta.com.br"})
-@EntityScan("cufa.conecta.com.br.resources.user")
-@EnableJpaRepositories("cufa.conecta.com.br.resources.user")
+@EntityScan("cufa.conecta.com.br.resources")
+@EnableJpaRepositories("cufa.conecta.com.br.resources")
 public class CufaConectaApplication {
 
 	public static void main(String[] args) {
