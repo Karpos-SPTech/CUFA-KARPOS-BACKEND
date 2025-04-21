@@ -1,6 +1,6 @@
 package cufa.conecta.com.br.domain.service;
 
-import cufa.conecta.com.br.application.dto.request.UsuarioLoginDto;
+import cufa.conecta.com.br.application.dto.request.LoginDto;
 import cufa.conecta.com.br.application.dto.response.UsuarioResponseDto;
 import cufa.conecta.com.br.application.dto.response.UsuarioTokenDto;
 import cufa.conecta.com.br.application.dto.request.UsuarioRequestDto;
@@ -35,7 +35,7 @@ public class UsuarioService {
         repository.cadastrarUsuario(usuarioData);
     }
 
-    public UsuarioTokenDto login(UsuarioLoginDto usuarioLoginDto) {
+    public UsuarioTokenDto login(LoginDto usuarioLoginDto) {
         UsuarioData usuarioData = new UsuarioData();
 
         usuarioData.setEmail(usuarioLoginDto.getEmail());

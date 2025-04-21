@@ -1,9 +1,8 @@
 package cufa.conecta.com.br.resources.user;
 
+import cufa.conecta.com.br.application.exception.*;
 import cufa.conecta.com.br.config.GerenciadorTokenJwt;
 import cufa.conecta.com.br.application.dto.response.UsuarioTokenDto;
-import cufa.conecta.com.br.application.exception.BadRequestException;
-import cufa.conecta.com.br.application.exception.NotFoundException;
 import cufa.conecta.com.br.model.UsuarioData;
 import cufa.conecta.com.br.resources.user.dao.UsuarioDao;
 import cufa.conecta.com.br.resources.user.entity.UsuarioEntity;
@@ -38,7 +37,7 @@ public class UsuarioRepository {
 
         boolean emailExistente = usuarioDao.findByEmail(userDto.getEmail()).isPresent();
 
-        if (emailExistente) { throw new BadRequestException("E-mail já cadastrado!"); }
+        if (emailExistente) { throw new UsuarioBadRequest("E-mail já cadastrado!"); }
 
         usuarioDao.save(usuarioEntity);
     }
@@ -66,7 +65,7 @@ public class UsuarioRepository {
 
     public void atualizar(UsuarioData usuario) {
         UsuarioEntity usuarioExistente = usuarioDao.findById(usuario.getId())
-                .orElseThrow(() -> new NotFoundException("Usuário não encontrado"));
+                .orElseThrow(() -> new UsuarioNotFoundException("Usuário não encontrado"));
 
         usuarioExistente.setNome(usuario.getNome());
         usuarioExistente.setEmail(usuario.getEmail());
@@ -77,7 +76,7 @@ public class UsuarioRepository {
 
     public void deletar(Long id) {
         UsuarioEntity usuario = usuarioDao.findById(id)
-                .orElseThrow(() -> new NotFoundException("Usuário não encontrado"));
+                .orElseThrow(() -> new UsuarioNotFoundException("Usuário não encontrado"));
 
         usuarioDao.delete(usuario);
     }
@@ -103,7 +102,7 @@ public class UsuarioRepository {
 
     private UsuarioEntity buscarUsuarioPorEmail(String email) {
         return usuarioDao.findByEmail(email)
-                .orElseThrow(() -> new NotFoundException("Email do usuário não encontrado"));
+                .orElseThrow(() -> new UsuarioNotFoundException("Email do usuário não encontrado"));
     }
 
 }

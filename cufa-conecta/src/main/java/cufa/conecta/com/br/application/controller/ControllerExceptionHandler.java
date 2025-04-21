@@ -18,7 +18,7 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
             DatabaseInternalServerError.class
     })
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ApiExceptionDto handleInternalServerErrorException(Exception ex, WebRequest request) {
+    public ApiExceptionDto handleInternalServerErrorException(Exception ex) {
         return new ApiExceptionDto(
                 HttpStatus.INTERNAL_SERVER_ERROR,
                 ex.getMessage(),
@@ -26,9 +26,13 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
         );
     }
 
-    @ExceptionHandler({ BadRequestException.class })
+    @ExceptionHandler({
+            BadRequestException.class,
+            UsuarioBadRequest.class,
+            EmpresaBadRequest.class
+    })
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ApiExceptionDto handleBadRequestException(Exception ex, WebRequest request) {
+    public ApiExceptionDto handleBadRequestException(Exception ex) {
         return new ApiExceptionDto(
                 HttpStatus.BAD_REQUEST,
                 ex.getMessage() != null ? ex.getMessage() : "Bad Request",
@@ -37,10 +41,12 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler({
-            NotFoundException.class
+            NotFoundException.class,
+            UsuarioNotFoundException.class,
+            EmpresaNotFoundException.class
     })
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ApiExceptionDto handleNotFoundException(Exception ex, WebRequest request) {
+    public ApiExceptionDto handleNotFoundException(Exception ex) {
         return new ApiExceptionDto(
                 HttpStatus.NOT_FOUND,
                 ex.getMessage() != null ? ex.getMessage() : "Not Found",

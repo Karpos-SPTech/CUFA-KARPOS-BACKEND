@@ -12,4 +12,16 @@ public class ApiExceptionDto {
         this.message = message;
         this.type = type;
     }
+
+    public HttpStatus getStatus() {
+        return status;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public String getType() {
+        return type;
+    }
 }

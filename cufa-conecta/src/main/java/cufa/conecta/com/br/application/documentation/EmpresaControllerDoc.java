@@ -13,6 +13,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -53,19 +54,7 @@ public interface EmpresaControllerDoc {
             }
         )
     })
-    List<EmpresaResponseDto> buscarEmpresa(
-            @Parameter(
-                    description = "Número da página",
-                    schema = @Schema(type = "integer", format = "none")
-            )
-            @RequestParam Integer pagina,
-
-            @Parameter(
-                    description = "Tamanho da página",
-                    schema = @Schema(type = "integer", format = "none")
-            )
-            @RequestParam Integer tamanho
-    );
+    ResponseEntity<List<EmpresaResponseDto>> listarEmpresas();
 
     @Operation( summary = "Cria uma nova empresa dentro do serviço" )
 
@@ -217,7 +206,7 @@ public interface EmpresaControllerDoc {
             }
         )
     })
-    void atualizarEmpresa(@Valid Integer id, @Valid EmpresaRequestDto empresaDto);
+    void atualizarEmpresa(@Valid Long id, @Valid EmpresaRequestDto empresaDto);
 
     @Operation( summary = "Realiza a deleção de uma empresa" )
 
@@ -248,5 +237,5 @@ public interface EmpresaControllerDoc {
             }
         )
     })
-    void deletarEmpresa(@Valid Integer id);
+    void deletarEmpresa(@Valid Long id);
 }

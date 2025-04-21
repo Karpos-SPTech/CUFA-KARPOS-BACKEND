@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface UsuarioDao extends JpaRepository<UsuarioEntity, Long>, PagingAndSortingRepository<UsuarioEntity,Long> {
+public interface UsuarioDao extends JpaRepository<UsuarioEntity, Long> {
     Optional<UsuarioEntity> findByEmail(String email);
 }

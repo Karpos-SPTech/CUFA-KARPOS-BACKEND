@@ -1,7 +1,7 @@
 package cufa.conecta.com.br.application.controller;
 
 import cufa.conecta.com.br.application.documentation.UsuarioControllerDoc;
-import cufa.conecta.com.br.application.dto.request.UsuarioLoginDto;
+import cufa.conecta.com.br.application.dto.request.LoginDto;
 import cufa.conecta.com.br.application.dto.response.UsuarioResponseDto;
 import cufa.conecta.com.br.application.dto.response.UsuarioTokenDto;
 import cufa.conecta.com.br.application.dto.request.UsuarioRequestDto;
@@ -30,7 +30,7 @@ public class UsuarioController implements UsuarioControllerDoc {
 
     @PostMapping("/login")
     @ResponseStatus(HttpStatus.OK)
-    public UsuarioTokenDto login(@RequestBody UsuarioLoginDto usuarioLoginDto) {
+    public UsuarioTokenDto login(@RequestBody LoginDto usuarioLoginDto) {
         return service.login(usuarioLoginDto);
     }
 

@@ -1,75 +1,117 @@
 package cufa.conecta.com.br.resources.empresa;
 
+import cufa.conecta.com.br.application.dto.response.EmpresaTokenDto;
+import cufa.conecta.com.br.application.exception.BadRequestException;
+import cufa.conecta.com.br.application.exception.EmpresaBadRequest;
+import cufa.conecta.com.br.application.exception.EmpresaNotFoundException;
+import cufa.conecta.com.br.application.exception.NotFoundException;
+import cufa.conecta.com.br.config.GerenciadorTokenJwt;
 import cufa.conecta.com.br.model.EmpresaData;
 import cufa.conecta.com.br.resources.empresa.dao.EmpresaDao;
 import cufa.conecta.com.br.resources.empresa.entity.EmpresaEntity;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
-import java.util.ArrayList;
+
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @Repository
 public class EmpresaRepository {
+    private final GerenciadorTokenJwt gerenciadorTokenJwt;
+    private final AuthenticationManager authenticationManager;
     private final EmpresaDao empresaDao;
 
-    public EmpresaRepository(EmpresaDao empresaDao) { this.empresaDao = empresaDao; }
+    public EmpresaRepository(
+            GerenciadorTokenJwt gerenciadorTokenJwt,
+            AuthenticationManager authenticationManager,
+            EmpresaDao empresaDao
+    ) {
+        this.gerenciadorTokenJwt = gerenciadorTokenJwt;
+        this.authenticationManager = authenticationManager;
+        this.empresaDao = empresaDao;
+    }
+
+    //------------------------- Métodos do usuário -----------------------------
 
     public void cadastrarEmpresa(EmpresaData empresaDto) {
         EmpresaEntity empresaEntity = toEntity(empresaDto);
 
-        if (empresaDao.findByEmail(empresaEntity.getEmail()) != null) {
-            throw new IllegalArgumentException("E-mail já cadastrado!");
-        }
+        boolean emailExistente = empresaDao.findByEmail(empresaDto.getEmail()).isPresent();
+
+        if (emailExistente) { throw new EmpresaBadRequest("E-mail já cadastrado!"); }
+
         empresaDao.save(empresaEntity);
     }
 
-    public List<EmpresaData> buscarEmpresas(Integer pagina, Integer tamanho) {
-        List<EmpresaEntity> listaDeEntityDaEmpresa = empresaDao.findAll(
-                PageRequest.of(pagina, tamanho)
-        ).toList();
+    public EmpresaTokenDto autenticar(EmpresaData empresa) {
+        authenticateCredentials(empresa.getEmail(), empresa.getSenha());
 
-        List<EmpresaData> listasDeEmpresas = new ArrayList<>();
+        EmpresaEntity empresaAutenticada = buscarEmpresaPorEmail(empresa.getEmail());
+        SecurityContextHolder.getContext().setAuthentication(
+                new UsernamePasswordAuthenticationToken(empresa.getEmail(), empresa.getSenha())
+        );
 
-        for (EmpresaEntity empresa : listaDeEntityDaEmpresa) {
-            EmpresaData empresaData = new EmpresaData(empresa.getNome(), empresa.getEmail(),empresa.getSenha(), empresa.getCep(),
-                    empresa.getNumero(), empresa.getEndereco(), empresa.getCnpj(), empresa.getArea());
-            listasDeEmpresas.add(empresaData);
-        }
-        return listasDeEmpresas;
+        String token = gerenciadorTokenJwt.generateToken(
+                new UsernamePasswordAuthenticationToken(empresa.getEmail(), empresa.getSenha())
+        );
+
+        return new EmpresaTokenDto(
+                empresaAutenticada.getNome(),
+                empresaAutenticada.getEmail(),
+                token
+        );
     }
+
+    public List<EmpresaEntity> listarTodos() { return empresaDao.findAll(); }
 
     public void atualizar(EmpresaData empresa) {
-        EmpresaEntity usuarioExistente = empresaDao.findById(empresa.getId())
-                .orElseThrow(() -> new NoSuchElementException("Usuário não encontrado"));
+        EmpresaEntity empresaExistente = empresaDao.findById(empresa.getId())
+                .orElseThrow(() -> new EmpresaNotFoundException("Empresa não encontrada"));
 
-        usuarioExistente.setNome(empresa.getNome());
-        usuarioExistente.setEmail(empresa.getEmail());
-        usuarioExistente.setSenha(empresa.getSenha());
+        empresaExistente.setNome(empresa.getNome());
+        empresaExistente.setEmail(empresa.getEmail());
+        empresaExistente.setSenha(empresa.getSenha());
+        empresaExistente.setCep(empresa.getCep());
+        empresaExistente.setNumero(empresa.getNumero());
+        empresaExistente.setEndereco(empresa.getEndereco());
+        empresaExistente.setCnpj(empresa.getCnpj());
+        empresaExistente.setArea(empresa.getArea());
 
-        empresaDao.save(usuarioExistente);
+        empresaDao.save(empresaExistente);
     }
 
-    public void deletar(Integer id) {
+    public void deletar(Long id) {
         EmpresaEntity empresa = empresaDao.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("Usuário não encontrado"));
+                .orElseThrow(() -> new EmpresaNotFoundException("Empresa não encontrada"));
 
         empresaDao.delete(empresa);
     }
 
-//     ------------------ Método privado para conversão de dados --------------
+    //     ------------------ Métodos privados --------------
 
     private EmpresaEntity toEntity(EmpresaData empresaData) {
         EmpresaEntity entity = new EmpresaEntity();
         entity.setNome(empresaData.getNome());
         entity.setEmail(empresaData.getEmail());
         entity.setSenha(empresaData.getSenha());
-        entity.setCep(empresaData.getCep());
-        entity.setNumero(empresaData.getNumero());
-        entity.setEndereco(empresaData.getEndereco());
-        entity.setCnpj(empresaData.getCnpj());
-        entity.setArea(empresaData.getArea());
 
         return entity;
     }
+
+    private void authenticateCredentials(String email, String senha) {
+        Authentication credentials = new UsernamePasswordAuthenticationToken(email, senha);
+
+        authenticationManager.authenticate(credentials);
+
+        SecurityContextHolder.getContext().setAuthentication(credentials);
+    }
+
+    private EmpresaEntity buscarEmpresaPorEmail(String email) {
+        return empresaDao.findByEmail(email)
+                .orElseThrow(() -> new EmpresaNotFoundException("Email do usuário não encontrado"));
+    }
+
 }
+

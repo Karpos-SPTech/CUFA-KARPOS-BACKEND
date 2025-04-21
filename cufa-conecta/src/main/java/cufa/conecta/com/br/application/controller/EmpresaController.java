@@ -2,13 +2,17 @@ package cufa.conecta.com.br.application.controller;
 
 import cufa.conecta.com.br.application.documentation.EmpresaControllerDoc;
 import cufa.conecta.com.br.application.dto.request.EmpresaRequestDto;
+import cufa.conecta.com.br.application.dto.request.LoginDto;
 import cufa.conecta.com.br.application.dto.response.EmpresaResponseDto;
+import cufa.conecta.com.br.application.dto.response.EmpresaTokenDto;
 import cufa.conecta.com.br.domain.service.EmpresaService;
 import cufa.conecta.com.br.model.EmpresaData;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -21,31 +25,31 @@ public class EmpresaController implements EmpresaControllerDoc {
    }
 
    @PostMapping
+   @SecurityRequirement(name = "Bearer")
    @ResponseStatus(HttpStatus.CREATED)
-   public void cadastrarEmpresa(@RequestBody EmpresaRequestDto empresaDto) {
-      EmpresaData data = empresaDto.toModel();
+   public void cadastrarEmpresa(@RequestBody @Valid EmpresaRequestDto empresaDto) {
+      service.cadastrarEmpresa(empresaDto);
+   }
 
-      service.cadastrarEmpresa(data);
+   @PostMapping("/login")
+   @ResponseStatus(HttpStatus.OK)
+   public EmpresaTokenDto login(@RequestBody LoginDto empresaLoginDto) {
+      return service.login(empresaLoginDto);
    }
 
    @GetMapping
-   @ResponseStatus(HttpStatus.OK)
-   public List<EmpresaResponseDto> buscarEmpresa(
-           @RequestParam(defaultValue = "1") Integer pagina,
-           @RequestParam(defaultValue = "15") Integer tamanho
-   ) {
-      List<EmpresaData> listaDeEmpresas = service.buscarEmpresas(pagina -1, tamanho);
-      List<EmpresaResponseDto> listaDeResponseDaEmpresa = new ArrayList<>();
+   @SecurityRequirement(name = "Bearer")
+   public ResponseEntity<List<EmpresaResponseDto>> listarEmpresas() {
+      List<EmpresaResponseDto> empresasEncontradas = service.listarTodos();
 
-      for (EmpresaData empresa: listaDeEmpresas) {
-         listaDeResponseDaEmpresa.add(EmpresaResponseDto.of(empresa));
+      if (empresasEncontradas.isEmpty()){
+         return ResponseEntity.status(204).build();
       }
-
-      return listaDeResponseDaEmpresa;
+      return ResponseEntity.status(200).body(empresasEncontradas);
    }
 
    @PutMapping("/{id}")
-   public void atualizarEmpresa(@PathVariable Integer id, @RequestBody EmpresaRequestDto empresaDto) {
+   public void atualizarEmpresa(@PathVariable Long id, @RequestBody EmpresaRequestDto empresaDto) {
       EmpresaData empresaAtualizada = empresaDto.toModel();
       empresaAtualizada.setId(id);
 
@@ -53,5 +57,5 @@ public class EmpresaController implements EmpresaControllerDoc {
    }
 
    @DeleteMapping("/{id}")
-   public void deletarEmpresa(@PathVariable Integer id) { service.deletar(id); }
+   public void deletarEmpresa(@PathVariable Long id) { service.deletar(id); }
 }
