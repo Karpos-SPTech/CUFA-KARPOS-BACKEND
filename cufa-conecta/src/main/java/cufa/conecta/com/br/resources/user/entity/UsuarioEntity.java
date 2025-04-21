@@ -2,12 +2,11 @@ package cufa.conecta.com.br.resources.user.entity;
 
 import jakarta.persistence.*;
 
-@Entity
-@Table(name = "cadastro_usuario")
-public class UserEntity {
+@Entity(name = "cadastro_usuario")
+public class UsuarioEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    Long id;
 
     @Column
     String nome;
@@ -18,6 +17,8 @@ public class UserEntity {
     @Column
     String senha;
 
+    public Long getId() { return id; }
+
     public String getNome() {
         return nome;
     }
@@ -27,6 +28,8 @@ public class UserEntity {
     }
 
     public String getSenha() { return senha; }
+
+    public void setId(Long id) { this.id = id; }
 
     public void setNome(String nome) { this.nome = nome; }
 

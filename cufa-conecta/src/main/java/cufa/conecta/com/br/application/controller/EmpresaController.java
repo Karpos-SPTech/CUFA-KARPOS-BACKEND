@@ -1,7 +1,8 @@
 package cufa.conecta.com.br.application.controller;
 
-import cufa.conecta.com.br.application.request.EmpresaRequestDto;
-import cufa.conecta.com.br.application.response.EmpresaResponseDto;
+import cufa.conecta.com.br.application.documentation.EmpresaControllerDoc;
+import cufa.conecta.com.br.application.dto.request.EmpresaRequestDto;
+import cufa.conecta.com.br.application.dto.response.EmpresaResponseDto;
 import cufa.conecta.com.br.domain.service.EmpresaService;
 import cufa.conecta.com.br.model.EmpresaData;
 import org.springframework.http.HttpStatus;
@@ -12,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/empresas")
-public class EmpresaController {
+public class EmpresaController implements EmpresaControllerDoc {
    private final EmpresaService service;
 
    public EmpresaController(EmpresaService service) {

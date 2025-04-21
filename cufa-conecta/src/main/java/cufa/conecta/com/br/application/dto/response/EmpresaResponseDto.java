@@ -1,27 +1,20 @@
-package cufa.conecta.com.br.application.response;
+package cufa.conecta.com.br.application.dto.response;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import cufa.conecta.com.br.model.EmpresaData;
 
 public class EmpresaResponseDto {
-    @JsonProperty("nome")
+    Integer id;
     String nome;
-    @JsonProperty("email")
     String email;
-    @JsonProperty("senha")
     String senha;
-    @JsonProperty("cep")
     String cep;
-    @JsonProperty("numero")
     String numero;
-    @JsonProperty("endereco")
     String endereco;
-    @JsonProperty("cnpj")
     String cnpj;
-    @JsonProperty("area")
     String area;
 
-    public EmpresaResponseDto(String nome, String email, String senha, String cep, String numero, String endereco, String cnpj, String area) {
+    public EmpresaResponseDto(Integer id, String nome, String email, String senha, String cep, String numero, String endereco, String cnpj, String area) {
+        this.id = id;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
@@ -33,7 +26,7 @@ public class EmpresaResponseDto {
     }
 
     public static EmpresaResponseDto of(EmpresaData data) {
-        return new EmpresaResponseDto(data.getNome(), data.getEmail(), data.getSenha(), data.getCep(),
+        return new EmpresaResponseDto(data.getId(), data.getNome(), data.getEmail(), data.getSenha(), data.getCep(),
                 data.getNumero(), data.getEndereco(), data.getCnpj(),data.getArea());
     }
 }

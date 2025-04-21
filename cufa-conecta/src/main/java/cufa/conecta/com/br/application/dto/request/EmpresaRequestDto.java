@@ -1,4 +1,4 @@
-package cufa.conecta.com.br.application.request;
+package cufa.conecta.com.br.application.dto.request;
 
 import cufa.conecta.com.br.model.EmpresaData;
 import jakarta.validation.constraints.Email;
@@ -7,7 +7,6 @@ import jakarta.validation.constraints.Size;
 import org.hibernate.validator.constraints.br.CNPJ;
 
 public class EmpresaRequestDto {
-    Integer id;
     @NotBlank(message = "O campo do nome não pode ser nulo, vazio ou branco")
     String nome;
     @NotBlank(message = "O campo do email não pode ser nulo, vazio ou branco")
