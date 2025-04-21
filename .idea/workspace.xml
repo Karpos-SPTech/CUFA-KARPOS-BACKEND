@@ -5,29 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8cf62183-071a-43f5-9f2a-c59093baca55" name="Changes" comment="mudanças: &#10;Implementação jwt usuario;&#10;Criação do swagger doc empresa/usuario&#10;Criação das exceptions personalizadas">
-      <change afterPath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/application/dto/response/EmpresaTokenDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/application/exception/EmpresaBadRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/application/exception/EmpresaNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/application/exception/UsuarioBadRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/application/exception/UsuarioNotFoundException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/application/controller/ControllerExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/application/controller/ControllerExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/application/controller/EmpresaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/application/controller/EmpresaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/application/controller/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/application/controller/UsuarioController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/application/documentation/EmpresaControllerDoc.java" beforeDir="false" afterPath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/application/documentation/EmpresaControllerDoc.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/application/dto/request/EmpresaRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/application/dto/request/EmpresaRequestDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/application/dto/request/UsuarioLoginDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/application/dto/request/LoginDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/application/dto/request/UsuarioRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/application/dto/request/UsuarioRequestDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/application/dto/response/EmpresaResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/application/dto/response/EmpresaResponseDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/application/exception/DatabaseInternalServerError.java" beforeDir="false" afterPath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/application/exception/DatabaseInternalServerError.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/application/exception/NotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/application/exception/NotFoundException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/domain/service/EmpresaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/domain/service/EmpresaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/domain/service/UsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/domain/service/UsuarioService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/model/EmpresaData.java" beforeDir="false" afterPath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/model/EmpresaData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/config/AutenticacaoFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/config/AutenticacaoFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/config/AutenticacaoProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/config/AutenticacaoProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/config/SecurityConfiguracao.java" beforeDir="false" afterPath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/config/SecurityConfiguracao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/resources/empresa/EmpresaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/resources/empresa/EmpresaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/resources/empresa/dao/EmpresaDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/resources/empresa/dao/EmpresaDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/resources/empresa/entity/EmpresaEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/resources/empresa/entity/EmpresaEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/resources/user/UsuarioRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/resources/user/UsuarioRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/resources/user/dao/UsuarioDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/resources/user/dao/UsuarioDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/resources/user/AutenticacaoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/resources/AutenticacaoRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -216,7 +202,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741821990861</updated>
-      <workItem from="1745237646095" duration="17854000" />
+      <workItem from="1745237646095" duration="20469000" />
     </task>
     <task id="LOCAL-00001" summary="feat: Adicionando as camadas do projeto">
       <option name="closed" value="true" />

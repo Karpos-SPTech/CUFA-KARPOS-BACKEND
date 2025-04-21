@@ -1,6 +1,6 @@
 package cufa.conecta.com.br.config;
 
-import cufa.conecta.com.br.resources.user.AutenticacaoRepository;
+import cufa.conecta.com.br.resources.AutenticacaoRepository;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

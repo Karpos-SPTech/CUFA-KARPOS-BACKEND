@@ -96,6 +96,11 @@ public class EmpresaRepository {
         entity.setNome(empresaData.getNome());
         entity.setEmail(empresaData.getEmail());
         entity.setSenha(empresaData.getSenha());
+        entity.setCep(empresaData.getCep());
+        entity.setNumero(empresaData.getNumero());
+        entity.setEndereco(empresaData.getEndereco());
+        entity.setCnpj(empresaData.getCnpj());
+        entity.setArea(empresaData.getArea());
 
         return entity;
     }

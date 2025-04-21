@@ -1,5 +1,6 @@
 package cufa.conecta.com.br.application.dto.request;
 
+import cufa.conecta.com.br.application.exception.EmpresaBadRequest;
 import cufa.conecta.com.br.model.EmpresaData;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -43,72 +44,28 @@ public class EmpresaRequestDto {
     public EmpresaData toModel() {
         if (nome == null || email == null || senha == null || cep == null || numero == null || endereco == null ||
                 cnpj == null || area == null) {
-            throw new IllegalArgumentException("Os campos inseridos não podem ser nulos");
+            throw new EmpresaBadRequest("Os campos inseridos não podem ser nulos");
         }
         return new EmpresaData(nome, email, senha, cep, numero, endereco, cnpj, area);
     }
 
-    public String getNome() {
-        return nome;
-    }
+    public String getNome() { return nome; }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+    public String getEmail() { return email; }
 
-    public String getEmail() {
-        return email;
-    }
+    public void setEmail(String email) { this.email = email; }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    public String getSenha() { return senha; }
 
-    public String getSenha() {
-        return senha;
-    }
+    public void setSenha(String senha) { this.senha = senha; }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
+    public String getCep() { return cep; }
 
-    public String getCep() {
-        return cep;
-    }
+    public String getNumero() { return numero; }
 
-    public void setCep(String cep) {
-        this.cep = cep;
-    }
+    public String getEndereco() { return endereco; }
 
-    public String getNumero() {
-        return numero;
-    }
+    public String getCnpj() { return cnpj; }
 
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
-
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-
-    public String getCnpj() {
-        return cnpj;
-    }
-
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
-    }
-
-    public String getArea() {
-        return area;
-    }
-
-    public void setArea(String area) {
-        this.area = area;
-    }
+    public String getArea() { return area; }
 }

@@ -1,6 +1,6 @@
 package cufa.conecta.com.br.config;
 
-import cufa.conecta.com.br.resources.user.AutenticacaoRepository;
+import cufa.conecta.com.br.resources.AutenticacaoRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
@@ -49,6 +49,7 @@ public class SecurityConfiguracao {
             new AntPathRequestMatcher("/v3/api-docs/**"),
             new AntPathRequestMatcher("/actuator/*"),
             new AntPathRequestMatcher("/usuarios/**"),
+            new AntPathRequestMatcher("/empresas/**"),
             new AntPathRequestMatcher("/error/**")
     };
 
