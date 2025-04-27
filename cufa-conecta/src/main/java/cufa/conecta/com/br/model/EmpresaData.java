@@ -1,7 +1,7 @@
 package cufa.conecta.com.br.model;
 
 public class EmpresaData {
-    Integer id;
+    Long id;
     String nome;
     String email;
     String senha;
@@ -22,9 +22,11 @@ public class EmpresaData {
         this.area = area;
     }
 
-    public Integer getId() { return id; }
+    public EmpresaData() {}
 
-    public void setId(Integer id) { this.id = id; }
+    public Long getId() { return id; }
+
+    public void setId(Long id) { this.id = id; }
 
     public String getNome() { return nome; }
 
@@ -41,4 +43,12 @@ public class EmpresaData {
     public String getCnpj() { return cnpj; }
 
     public String getArea() { return area; }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
 }

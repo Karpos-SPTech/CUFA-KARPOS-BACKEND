@@ -4,28 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8cf62183-071a-43f5-9f2a-c59093baca55" name="Changes" comment="feat: Adicionando as camadas do projeto">
-      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/application/controller/EmpresaController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/application/request/EmpresaRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/application/response/EmpresaResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/domain/service/EmpresaService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/model/EmpresaData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/resources/empresa/EmpresaRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/resources/empresa/dao/EmpresaDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/resources/empresa/entity/EmpresaEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cufa-conecta/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/cufa-conecta/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/application/CufaConectaApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/application/CufaConectaApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/application/UserResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/application/response/UserResponseDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/application/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/application/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cufa-conecta/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/cufa-conecta/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cufa-conecta/src/main/resources/db.migration/V1__Create_table_user.sql" beforeDir="false" />
+    <list default="true" id="8cf62183-071a-43f5-9f2a-c59093baca55" name="Changes" comment="Adicionando o observer">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,23 +25,7 @@
         </task>
         <projects_view>
           <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="cufa-conecta" type="f1a62948:ProjectNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="cufa-conecta" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="cufa-conecta" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="build" type="c8890929:TasksNode$1" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </tree_state>
         </projects_view>
@@ -95,6 +59,12 @@
     &quot;accountId&quot;: &quot;7351b229-97ca-4012-af26-6fad35dd0a8d&quot;
   }
 }</component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -106,17 +76,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.cufa-conecta [:cufa.conecta.com.br.application.CufaConectaApplication.main()].executor": "Run",
-    "Gradle.cufa-conecta [build].executor": "Run",
-    "Gradle.cufa-conecta [clean].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "develop",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Mauricio M/Desktop/CUFA/CUFA-KARPOS-BACKEND"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.cufa-conecta [:cufa.conecta.com.br.application.CufaConectaApplication.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.cufa-conecta [build].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.cufa-conecta [clean].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;CNCTA__001&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Mauricio M/Desktop/CUFA/CUFA-KARPOS-BACKEND&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="cufa.conecta.com.br.resources" />
@@ -128,7 +111,7 @@
       <module name="cufa-conecta.main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="cufa.conecta.com.br.application.*" />
+          <option name="PATTERN" value="cufa.conecta.com.br.application.response.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -180,6 +163,13 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="CufaConectaApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="cufa-conecta.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="cufa.conecta.com.br.application.CufaConectaApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.cufa-conecta [build]" />
@@ -196,6 +186,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741821990861</updated>
+      <workItem from="1745237646095" duration="20469000" />
     </task>
     <task id="LOCAL-00001" summary="feat: Adicionando as camadas do projeto">
       <option name="closed" value="true" />
@@ -205,11 +196,34 @@
       <option name="project" value="LOCAL" />
       <updated>1741823092070</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="mudanças: &#10;Implementação jwt usuario;&#10;Criação do swagger doc empresa/usuario&#10;Criação das exceptions personalizadas">
+      <option name="closed" value="true" />
+      <created>1745261276967</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1745261276967</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Adicionando o observer">
+      <option name="closed" value="true" />
+      <created>1745781149603</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1745781149603</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat: Criação do CRUD do usuario" />
+    <MESSAGE value="mudanças: &#10;Implementação jwt usuario;&#10;Criação do swagger doc empresa/usuario" />
+    <MESSAGE value="mudanças: &#10;Implementação jwt usuario;&#10;Criação do swagger doc empresa/usuario&#10;Criação das exceptions personalizadas" />
     <MESSAGE value="feat: Adicionando as camadas do projeto" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: Adicionando as camadas do projeto" />
+    <MESSAGE value="Adicionando o observer" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adicionando o observer" />
   </component>
 </project>

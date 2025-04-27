@@ -1,32 +1,33 @@
-package cufa.conecta.com.br.resources.empresa.entity;
+package cufa.conecta.com.br.application.dto.response;
 
-import jakarta.persistence.*;
-
-@Entity(name = "cadastro_empresa")
-public class EmpresaEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class EmpresaResponseDto {
     Long id;
-    @Column
     String nome;
-    @Column
     String email;
-    @Column
-    String senha;
-    @Column
     String cep;
-    @Column
     String numero;
-    @Column
     String endereco;
-    @Column
     String cnpj;
-    @Column
     String area;
 
-    public Long getId() { return id; }
+    public EmpresaResponseDto(Long id, String nome, String email, String cep, String numero, String endereco, String cnpj, String area) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.cep = cep;
+        this.numero = numero;
+        this.endereco = endereco;
+        this.cnpj = cnpj;
+        this.area = area;
+    }
 
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getNome() {
         return nome;
@@ -42,14 +43,6 @@ public class EmpresaEntity {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
     }
 
     public String getCep() {
