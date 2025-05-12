@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8cf62183-071a-43f5-9f2a-c59093baca55" name="Changes" comment="mudanças: &#10;Implementação jwt usuario;&#10;Criação do swagger doc empresa/usuario&#10;Criação das exceptions personalizadas">
+    <list default="true" id="8cf62183-071a-43f5-9f2a-c59093baca55" name="Changes" comment="mudanças: &#10;remoção do id na response&#10;indentação de código">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cufa-conecta/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/cufa-conecta/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/application/documentation/EmpresaControllerDoc.java" beforeDir="false" afterPath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/application/documentation/EmpresaControllerDoc.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/application/documentation/UsuarioControllerDoc.java" beforeDir="false" afterPath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/application/documentation/UsuarioControllerDoc.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/application/dto/request/EmpresaRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/cufa-conecta/src/main/java/cufa/conecta/com/br/application/dto/request/EmpresaRequestDto.java" afterDir="false" />
@@ -212,7 +213,7 @@
       <workItem from="1745721860803" duration="612000" />
       <workItem from="1745774791930" duration="374000" />
       <workItem from="1746967990211" duration="3556000" />
-      <workItem from="1747016143329" duration="2286000" />
+      <workItem from="1747016143329" duration="2601000" />
     </task>
     <task id="LOCAL-00001" summary="feat: Adicionando as camadas do projeto">
       <option name="closed" value="true" />
@@ -241,7 +242,8 @@
     <MESSAGE value="feat: Criação do CRUD do usuario" />
     <MESSAGE value="mudanças: &#10;Implementação jwt usuario;&#10;Criação do swagger doc empresa/usuario" />
     <MESSAGE value="mudanças: &#10;Implementação jwt usuario;&#10;Criação do swagger doc empresa/usuario&#10;Criação das exceptions personalizadas" />
-    <option name="LAST_COMMIT_MESSAGE" value="mudanças: &#10;Implementação jwt usuario;&#10;Criação do swagger doc empresa/usuario&#10;Criação das exceptions personalizadas" />
+    <MESSAGE value="mudanças: &#10;remoção do id na response&#10;indentação de código" />
+    <option name="LAST_COMMIT_MESSAGE" value="mudanças: &#10;remoção do id na response&#10;indentação de código" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
