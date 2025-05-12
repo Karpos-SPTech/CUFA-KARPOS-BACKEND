@@ -22,7 +22,7 @@ import java.util.List;
 @Validated
 @Tag(
     name = "Empresa Controller",
-    description = "Responsável por executar o CRUD da empresa"
+    description = "Responsável por executar o CRUD de Empresas"
 )
 public interface EmpresaControllerDoc {
     @Operation( summary = "Requisição responsável pela recuperação das empresas cadastradas" )
