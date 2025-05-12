@@ -14,10 +14,12 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 
@@ -30,6 +32,11 @@ import java.util.List;
 )
 @SecurityScheme(
         name = "Bearer", type = SecuritySchemeType.HTTP, scheme = "bearer", bearerFormat = "JWT"
+)
+@Validated
+@Tag(
+        name = "Usuario Controller",
+        description = "Responsável por executar o CRUD de Usuarios"
 )
 public interface UsuarioControllerDoc {
     @Operation( summary = "Requisição responsável pela recuperação dos usuários cadastrados" )

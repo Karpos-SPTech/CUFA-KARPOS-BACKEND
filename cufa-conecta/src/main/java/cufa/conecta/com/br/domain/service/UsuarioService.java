@@ -53,9 +53,9 @@ public class UsuarioService {
 
     public List<UsuarioResponseDto> listarTodos() {
         List<UsuarioEntity> usuariosEncontrados = repository.listarTodos();
+
         return usuariosEncontrados.stream()
                 .map(usuario -> new UsuarioResponseDto(
-                        usuario.getId(),
                         usuario.getNome(),
                         usuario.getEmail())
                 )

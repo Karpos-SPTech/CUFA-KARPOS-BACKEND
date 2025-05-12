@@ -1,20 +1,12 @@
 package cufa.conecta.com.br.application.dto.response;
 
 public class UsuarioResponseDto {
-    private Long id;
     private String nome;
     private String email;
 
-    public UsuarioResponseDto(Long id, String nome, String email) {
-        this.id = id;
+    public UsuarioResponseDto( String nome, String email) {
         this.nome = nome;
         this.email = email;
-    }
-
-    public Long getId() { return id; }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getNome() {
@@ -33,4 +25,3 @@ public class UsuarioResponseDto {
         this.email = email;
     }
 }
-

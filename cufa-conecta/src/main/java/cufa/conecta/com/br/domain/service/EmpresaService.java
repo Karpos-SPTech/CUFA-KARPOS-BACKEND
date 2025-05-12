@@ -63,11 +63,7 @@ public class EmpresaService {
                 )
                 .collect(Collectors.toList());
     }
-    public void atualizarEmpresa(EmpresaData empresa) {
-        repository.atualizar(empresa);
-    }
+    public void atualizarEmpresa(EmpresaData empresa) { repository.atualizar(empresa); }
 
-    public void deletar(Long id) {
-        repository.deletar(id);
-    }
+    public void deletar(Long id) { repository.deletar(id); }
 }

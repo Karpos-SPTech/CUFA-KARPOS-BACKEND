@@ -104,6 +104,5 @@ public class UsuarioRepository {
         return usuarioDao.findByEmail(email)
                 .orElseThrow(() -> new UsuarioNotFoundException("Email do usuário não encontrado"));
     }
-
 }
 

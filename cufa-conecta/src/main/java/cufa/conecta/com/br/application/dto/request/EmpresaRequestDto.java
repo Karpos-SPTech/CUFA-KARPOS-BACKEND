@@ -17,6 +17,7 @@ public class EmpresaRequestDto {
     @Size(min = 8, max = 30, message = "A senha deve conter entre 8 e 30 caracteres")
     String senha;
     @NotBlank(message = "O campo do CEP não pode ser nulo, vazio ou branco")
+    @Size(min = 8, max = 8, message = "O cep inserido deve conter 8 caracteres")
     String cep;
     @NotBlank(message = "O campo do número do endereço não pode ser nulo, vazio ou branco")
     String numero;
@@ -24,6 +25,7 @@ public class EmpresaRequestDto {
     String endereco;
     @CNPJ(message = "O CNPJ inserido é invalido!")
     @NotBlank(message = "O campo do CNPJ não pode ser nulo, vazio ou branco")
+    @Size(min = 14, max = 14, message = "O CNPJ deve conter 14 caracteres")
     String cnpj;
     @NotBlank(message = "O campo da area não pode ser nulo, vazio ou branco")
     String area;
