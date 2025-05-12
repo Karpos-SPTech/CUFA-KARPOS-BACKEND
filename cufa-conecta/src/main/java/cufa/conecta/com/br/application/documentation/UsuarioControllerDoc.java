@@ -1,8 +1,8 @@
 package cufa.conecta.com.br.application.documentation;
 
 import cufa.conecta.com.br.application.dto.response.ApiExceptionDto;
-import cufa.conecta.com.br.application.dto.request.UsuarioRequestDto;
-import cufa.conecta.com.br.application.dto.response.UsuarioResponseDto;
+import cufa.conecta.com.br.application.dto.request.usuario.UsuarioRequestDto;
+import cufa.conecta.com.br.application.dto.response.usuario.UsuarioResponseDto;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

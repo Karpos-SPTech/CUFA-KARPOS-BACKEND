@@ -1,4 +1,4 @@
-package cufa.conecta.com.br.application.dto.request;
+package cufa.conecta.com.br.application.dto.request.empresa;
 
 import cufa.conecta.com.br.application.exception.EmpresaBadRequest;
 import cufa.conecta.com.br.model.EmpresaData;

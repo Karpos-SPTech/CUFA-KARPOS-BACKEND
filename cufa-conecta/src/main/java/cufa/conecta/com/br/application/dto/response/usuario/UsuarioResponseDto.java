@@ -1,4 +1,4 @@
-package cufa.conecta.com.br.application.dto.response;
+package cufa.conecta.com.br.application.dto.response.usuario;
 
 public class UsuarioResponseDto {
     private String nome;

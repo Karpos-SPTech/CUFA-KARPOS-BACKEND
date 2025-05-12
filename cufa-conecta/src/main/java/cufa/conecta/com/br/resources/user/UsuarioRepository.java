@@ -2,7 +2,7 @@ package cufa.conecta.com.br.resources.user;
 
 import cufa.conecta.com.br.application.exception.*;
 import cufa.conecta.com.br.config.GerenciadorTokenJwt;
-import cufa.conecta.com.br.application.dto.response.UsuarioTokenDto;
+import cufa.conecta.com.br.application.dto.response.usuario.UsuarioTokenDto;
 import cufa.conecta.com.br.model.UsuarioData;
 import cufa.conecta.com.br.resources.user.dao.UsuarioDao;
 import cufa.conecta.com.br.resources.user.entity.UsuarioEntity;

@@ -1,8 +1,8 @@
 package cufa.conecta.com.br.application.documentation;
 
 import cufa.conecta.com.br.application.dto.response.ApiExceptionDto;
-import cufa.conecta.com.br.application.dto.request.EmpresaRequestDto;
-import cufa.conecta.com.br.application.dto.response.EmpresaResponseDto;
+import cufa.conecta.com.br.application.dto.request.empresa.EmpresaRequestDto;
+import cufa.conecta.com.br.application.dto.response.empresa.EmpresaResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -15,7 +15,6 @@ import jakarta.validation.Valid;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 

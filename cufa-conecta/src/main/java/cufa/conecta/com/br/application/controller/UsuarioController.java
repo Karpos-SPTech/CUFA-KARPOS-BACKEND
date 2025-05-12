@@ -2,9 +2,9 @@ package cufa.conecta.com.br.application.controller;
 
 import cufa.conecta.com.br.application.documentation.UsuarioControllerDoc;
 import cufa.conecta.com.br.application.dto.request.LoginDto;
-import cufa.conecta.com.br.application.dto.response.UsuarioResponseDto;
-import cufa.conecta.com.br.application.dto.response.UsuarioTokenDto;
-import cufa.conecta.com.br.application.dto.request.UsuarioRequestDto;
+import cufa.conecta.com.br.application.dto.response.usuario.UsuarioResponseDto;
+import cufa.conecta.com.br.application.dto.response.usuario.UsuarioTokenDto;
+import cufa.conecta.com.br.application.dto.request.usuario.UsuarioRequestDto;
 import cufa.conecta.com.br.domain.service.UsuarioService;
 import cufa.conecta.com.br.model.UsuarioData;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;

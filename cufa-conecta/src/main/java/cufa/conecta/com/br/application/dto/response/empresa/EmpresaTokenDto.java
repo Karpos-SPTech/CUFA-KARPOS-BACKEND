@@ -1,4 +1,4 @@
-package cufa.conecta.com.br.application.dto.response;
+package cufa.conecta.com.br.application.dto.response.empresa;
 
 public class EmpresaTokenDto {
     private String nome;
