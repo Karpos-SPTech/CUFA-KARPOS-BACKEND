@@ -1,10 +1,10 @@
 package cufa.conecta.com.br.application.controller;
 
 import cufa.conecta.com.br.application.documentation.EmpresaControllerDoc;
-import cufa.conecta.com.br.application.dto.request.EmpresaRequestDto;
+import cufa.conecta.com.br.application.dto.request.empresa.EmpresaRequestDto;
 import cufa.conecta.com.br.application.dto.request.LoginDto;
-import cufa.conecta.com.br.application.dto.response.EmpresaResponseDto;
-import cufa.conecta.com.br.application.dto.response.EmpresaTokenDto;
+import cufa.conecta.com.br.application.dto.response.empresa.EmpresaResponseDto;
+import cufa.conecta.com.br.application.dto.response.empresa.EmpresaTokenDto;
 import cufa.conecta.com.br.domain.service.EmpresaService;
 import cufa.conecta.com.br.model.EmpresaData;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;

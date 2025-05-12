@@ -1,10 +1,8 @@
 package cufa.conecta.com.br.resources.empresa;
 
-import cufa.conecta.com.br.application.dto.response.EmpresaTokenDto;
-import cufa.conecta.com.br.application.exception.BadRequestException;
+import cufa.conecta.com.br.application.dto.response.empresa.EmpresaTokenDto;
 import cufa.conecta.com.br.application.exception.EmpresaBadRequest;
 import cufa.conecta.com.br.application.exception.EmpresaNotFoundException;
-import cufa.conecta.com.br.application.exception.NotFoundException;
 import cufa.conecta.com.br.config.GerenciadorTokenJwt;
 import cufa.conecta.com.br.model.EmpresaData;
 import cufa.conecta.com.br.resources.empresa.dao.EmpresaDao;

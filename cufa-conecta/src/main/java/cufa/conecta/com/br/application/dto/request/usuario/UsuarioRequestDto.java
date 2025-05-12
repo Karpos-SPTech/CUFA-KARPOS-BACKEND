@@ -1,4 +1,4 @@
-package cufa.conecta.com.br.application.dto.request;
+package cufa.conecta.com.br.application.dto.request.usuario;
 
 import cufa.conecta.com.br.application.exception.BadRequestException;
 import cufa.conecta.com.br.model.UsuarioData;
