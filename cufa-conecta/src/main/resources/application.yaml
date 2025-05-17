@@ -12,10 +12,10 @@ spring:
 
 jwt:
   validity: 3600000
-  secret: RXhpc3RlIHVtYSB0ZW9yaWEgcXVlIGRpeiBxdWUsIHNlIHVtIGRpYSBhbGd16W0gZGVzY29icmlyIGV4YX
-
-##  flyway:
-##    enabled: true
-##    locations:
-##      classpath: db/migration
-##      default-schema: cufa
+  secret: RXhpc3RlIHVtYSB0ZW9yaWEgcXVlIGRpeiBxdWUsIHNlIHVtIGRpYSBhbGd16W0gZGVzY29icmlyIGV4YX]
+#
+#  flyway:
+#    enabled: true
+#    locations:
+#      classpath: db/migration
+#      default-schema: cufa
