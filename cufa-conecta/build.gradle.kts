@@ -45,6 +45,14 @@ dependencies {
 
 	//Swagger
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.4")
+
+	// JUnit Jupiter (JUnit 5)
+	testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
+
+	// Mockito Core
+	testImplementation("org.mockito:mockito-core:5.11.0")
+	testImplementation("org.mockito:mockito-junit-jupiter:5.11.0")
+
 }
 
 tasks.withType<Test> {
