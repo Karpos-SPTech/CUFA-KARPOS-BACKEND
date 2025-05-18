@@ -2,7 +2,7 @@ package cufa.conecta.com.br.resources.user.entity;
 
 import jakarta.persistence.*;
 
-@Entity(name = "cadastro_usuario")
+@Entity(name = "usuarios")
 public class UsuarioEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
