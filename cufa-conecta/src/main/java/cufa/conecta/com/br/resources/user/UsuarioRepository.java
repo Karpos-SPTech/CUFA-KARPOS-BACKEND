@@ -1,108 +1,110 @@
 package cufa.conecta.com.br.resources.user;
 
+import cufa.conecta.com.br.application.dto.response.usuario.UsuarioTokenDto;
 import cufa.conecta.com.br.application.exception.*;
 import cufa.conecta.com.br.config.GerenciadorTokenJwt;
-import cufa.conecta.com.br.application.dto.response.usuario.UsuarioTokenDto;
 import cufa.conecta.com.br.model.UsuarioData;
 import cufa.conecta.com.br.resources.user.dao.UsuarioDao;
 import cufa.conecta.com.br.resources.user.entity.UsuarioEntity;
+import java.util.List;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
 public class UsuarioRepository {
-    private final GerenciadorTokenJwt gerenciadorTokenJwt;
-    private final AuthenticationManager authenticationManager;
-    private final UsuarioDao usuarioDao;
+  private final GerenciadorTokenJwt gerenciadorTokenJwt;
+  private final AuthenticationManager authenticationManager;
+  private final UsuarioDao usuarioDao;
 
-    public UsuarioRepository(
-            GerenciadorTokenJwt gerenciadorTokenJwt,
-            AuthenticationManager authenticationManager,
-            UsuarioDao usuarioDao
-    ) {
-        this.gerenciadorTokenJwt = gerenciadorTokenJwt;
-        this.authenticationManager = authenticationManager;
-        this.usuarioDao = usuarioDao;
+  public UsuarioRepository(
+      GerenciadorTokenJwt gerenciadorTokenJwt,
+      AuthenticationManager authenticationManager,
+      UsuarioDao usuarioDao) {
+    this.gerenciadorTokenJwt = gerenciadorTokenJwt;
+    this.authenticationManager = authenticationManager;
+    this.usuarioDao = usuarioDao;
+  }
+
+  // ------------------------- Métodos do usuário -----------------------------
+
+  public void cadastrarUsuario(UsuarioData userDto) {
+    UsuarioEntity usuarioEntity = toEntity(userDto);
+
+    boolean emailExistente = usuarioDao.findByEmail(userDto.getEmail()).isPresent();
+
+    if (emailExistente) {
+      throw new UsuarioBadRequest("E-mail já cadastrado!");
     }
 
-    //------------------------- Métodos do usuário -----------------------------
+    usuarioDao.save(usuarioEntity);
+  }
 
-    public void cadastrarUsuario(UsuarioData userDto) {
-        UsuarioEntity usuarioEntity = toEntity(userDto);
+  public UsuarioTokenDto autenticar(UsuarioData usuario) {
+    authenticateCredentials(usuario.getEmail(), usuario.getSenha());
 
-        boolean emailExistente = usuarioDao.findByEmail(userDto.getEmail()).isPresent();
+    UsuarioEntity usuarioAutenticado = buscarUsuarioPorEmail(usuario.getEmail());
+    SecurityContextHolder.getContext()
+        .setAuthentication(
+            new UsernamePasswordAuthenticationToken(usuario.getEmail(), usuario.getSenha()));
 
-        if (emailExistente) { throw new UsuarioBadRequest("E-mail já cadastrado!"); }
+    String token =
+        gerenciadorTokenJwt.generateToken(
+            new UsernamePasswordAuthenticationToken(usuario.getEmail(), usuario.getSenha()));
 
-        usuarioDao.save(usuarioEntity);
-    }
+    return new UsuarioTokenDto(usuarioAutenticado.getNome(), usuarioAutenticado.getEmail(), token);
+  }
 
-    public UsuarioTokenDto autenticar(UsuarioData usuario) {
-        authenticateCredentials(usuario.getEmail(), usuario.getSenha());
+  public List<UsuarioEntity> listarTodos() {
+    return usuarioDao.findAll();
+  }
 
-        UsuarioEntity usuarioAutenticado = buscarUsuarioPorEmail(usuario.getEmail());
-        SecurityContextHolder.getContext().setAuthentication(
-                new UsernamePasswordAuthenticationToken(usuario.getEmail(), usuario.getSenha())
-        );
+  public void atualizar(UsuarioData usuario) {
+    UsuarioEntity usuarioExistente =
+        usuarioDao
+            .findById(usuario.getId())
+            .orElseThrow(() -> new UsuarioNotFoundException("Usuário não encontrado"));
 
-        String token = gerenciadorTokenJwt.generateToken(
-                new UsernamePasswordAuthenticationToken(usuario.getEmail(), usuario.getSenha())
-        );
+    usuarioExistente.setNome(usuario.getNome());
+    usuarioExistente.setEmail(usuario.getEmail());
+    usuarioExistente.setSenha(usuario.getSenha());
 
-        return new UsuarioTokenDto(
-                usuarioAutenticado.getNome(),
-                usuarioAutenticado.getEmail(),
-                token
-        );
-    }
+    usuarioDao.save(usuarioExistente);
+  }
 
-    public List<UsuarioEntity> listarTodos() { return usuarioDao.findAll(); }
+  public void deletar(Long id) {
+    UsuarioEntity usuario =
+        usuarioDao
+            .findById(id)
+            .orElseThrow(() -> new UsuarioNotFoundException("Usuário não encontrado"));
 
-    public void atualizar(UsuarioData usuario) {
-        UsuarioEntity usuarioExistente = usuarioDao.findById(usuario.getId())
-                .orElseThrow(() -> new UsuarioNotFoundException("Usuário não encontrado"));
+    usuarioDao.delete(usuario);
+  }
 
-        usuarioExistente.setNome(usuario.getNome());
-        usuarioExistente.setEmail(usuario.getEmail());
-        usuarioExistente.setSenha(usuario.getSenha());
+  //     ------------------ Métodos privados --------------
 
-        usuarioDao.save(usuarioExistente);
-    }
+  private UsuarioEntity toEntity(UsuarioData usuarioData) {
+    UsuarioEntity entity = new UsuarioEntity();
+    entity.setNome(usuarioData.getNome());
+    entity.setEmail(usuarioData.getEmail());
+    entity.setSenha(usuarioData.getSenha());
 
-    public void deletar(Long id) {
-        UsuarioEntity usuario = usuarioDao.findById(id)
-                .orElseThrow(() -> new UsuarioNotFoundException("Usuário não encontrado"));
+    return entity;
+  }
 
-        usuarioDao.delete(usuario);
-    }
+  private void authenticateCredentials(String email, String senha) {
+    Authentication credentials = new UsernamePasswordAuthenticationToken(email, senha);
 
-    //     ------------------ Métodos privados --------------
+    authenticationManager.authenticate(credentials);
 
-    private UsuarioEntity toEntity(UsuarioData usuarioData) {
-        UsuarioEntity entity = new UsuarioEntity();
-        entity.setNome(usuarioData.getNome());
-        entity.setEmail(usuarioData.getEmail());
-        entity.setSenha(usuarioData.getSenha());
+    SecurityContextHolder.getContext().setAuthentication(credentials);
+  }
 
-        return entity;
-    }
-
-    private void authenticateCredentials(String email, String senha) {
-        Authentication credentials = new UsernamePasswordAuthenticationToken(email, senha);
-
-        authenticationManager.authenticate(credentials);
-
-        SecurityContextHolder.getContext().setAuthentication(credentials);
-    }
-
-    private UsuarioEntity buscarUsuarioPorEmail(String email) {
-        return usuarioDao.findByEmail(email)
-                .orElseThrow(() -> new UsuarioNotFoundException("Email do usuário não encontrado"));
-    }
+  private UsuarioEntity buscarUsuarioPorEmail(String email) {
+    return usuarioDao
+        .findByEmail(email)
+        .orElseThrow(() -> new UsuarioNotFoundException("Email do usuário não encontrado"));
+  }
 }
-
