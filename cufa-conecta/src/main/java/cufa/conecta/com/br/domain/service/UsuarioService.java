@@ -57,8 +57,16 @@ public class UsuarioService {
         return usuariosEncontrados.stream()
                 .map(usuario -> new UsuarioResponseDto(
                         usuario.getNome(),
-                        usuario.getEmail())
-                )
+                        usuario.getEmail(),
+                        usuario.getCpf(),
+                        usuario.getTelefone(),
+                        usuario.getEscolaridade(),
+                        usuario.getDt_nascimento(),
+                        usuario.getEstado_civil(),
+                        usuario.getEstado(),
+                        usuario.getCidade(),
+                        usuario.getBiografia()
+                ))
                 .collect(Collectors.toList());
     }
 

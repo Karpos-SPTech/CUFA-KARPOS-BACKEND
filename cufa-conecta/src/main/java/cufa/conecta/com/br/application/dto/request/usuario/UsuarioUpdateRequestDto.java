@@ -1,59 +1,60 @@
 package cufa.conecta.com.br.application.dto.request.usuario;
 
 import cufa.conecta.com.br.application.exception.BadRequestException;
-import cufa.conecta.com.br.model.PerfilUsuarioData;
+import cufa.conecta.com.br.model.UsuarioData;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 
-public class UsuarioPerfilRequestDto {
+public class UsuarioUpdateRequestDto {
     @NotBlank
+    String nome;
     String cpf;
-    @NotBlank
     String telefone;
-    @NotBlank
     String escolaridade;
-    @NotNull
-    LocalDate dataNascimento;
-    @NotBlank
+    LocalDate dtNascimento;
     String estadoCivil;
-    @NotBlank
     String estado;
-    @NotBlank
     String cidade;
-    @NotBlank
     String biografia;
 
-    public UsuarioPerfilRequestDto(String cpf, String telefone, String escolaridade, LocalDate dataNascimento, String estadoCivil, String estado, String cidade, String biografia) {
+    public UsuarioUpdateRequestDto(String nome, String cpf, String telefone, String escolaridade, LocalDate dtNascimento, String estadoCivil, String estado, String cidade, String biografia) {
+        this.nome = nome;
         this.cpf = cpf;
         this.telefone = telefone;
         this.escolaridade = escolaridade;
-        this.dataNascimento = dataNascimento;
+        this.dtNascimento = dtNascimento;
         this.estadoCivil = estadoCivil;
         this.estado = estado;
         this.cidade = cidade;
         this.biografia = biografia;
     }
 
-    public PerfilUsuarioData toModel() {
-        if (cpf == null || telefone == null || escolaridade == null || dataNascimento == null ||
-                estadoCivil == null || estado == null || cidade == null || biografia == null) {
-            throw new BadRequestException("Todos os campos do perfil devem ser preenchidos");
+    public UsuarioData toModel() {
+        if (nome == null || cpf == null || telefone == null ||
+                escolaridade == null || dtNascimento == null || estadoCivil == null || estado == null ||
+                cidade == null || biografia == null) {
+            throw new BadRequestException("Todos os campos devem ser preenchidos");
         }
 
-        return new PerfilUsuarioData(
+        return new UsuarioData(
+                nome,
                 cpf,
                 telefone,
                 escolaridade,
-                dataNascimento,
+                dtNascimento,
                 estadoCivil,
                 estado,
                 cidade,
-                biografia,
-                toModel().getFkUsuario()
+                biografia
         );
     }
+
+    public String getNome() {
+        return nome;
+    }
+
 
     public String getCpf() {
         return cpf;
@@ -67,8 +68,8 @@ public class UsuarioPerfilRequestDto {
         return escolaridade;
     }
 
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
+    public LocalDate getDtNascimento() {
+        return dtNascimento;
     }
 
     public String getEstadoCivil() {

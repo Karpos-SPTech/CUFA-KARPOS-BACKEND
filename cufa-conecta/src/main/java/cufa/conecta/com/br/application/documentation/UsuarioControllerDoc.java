@@ -1,5 +1,6 @@
 package cufa.conecta.com.br.application.documentation;
 
+import cufa.conecta.com.br.application.dto.request.usuario.UsuarioUpdateRequestDto;
 import cufa.conecta.com.br.application.dto.response.ApiExceptionDto;
 import cufa.conecta.com.br.application.dto.request.usuario.UsuarioRequestDto;
 import cufa.conecta.com.br.application.dto.response.usuario.UsuarioResponseDto;
@@ -210,7 +211,7 @@ public interface UsuarioControllerDoc {
             }
         )
     })
-    void atualizarUsuario(@Valid Long id, @Valid UsuarioRequestDto usuarioDto);
+    void atualizarUsuario(@Valid Long id, @Valid UsuarioUpdateRequestDto usuarioDto);
 
     @Operation( summary = "Realiza a deleção de um usuário" )
 

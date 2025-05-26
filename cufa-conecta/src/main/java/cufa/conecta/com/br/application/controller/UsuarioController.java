@@ -2,6 +2,7 @@ package cufa.conecta.com.br.application.controller;
 
 import cufa.conecta.com.br.application.documentation.UsuarioControllerDoc;
 import cufa.conecta.com.br.application.dto.request.LoginDto;
+import cufa.conecta.com.br.application.dto.request.usuario.UsuarioUpdateRequestDto;
 import cufa.conecta.com.br.application.dto.response.usuario.UsuarioResponseDto;
 import cufa.conecta.com.br.application.dto.response.usuario.UsuarioTokenDto;
 import cufa.conecta.com.br.application.dto.request.usuario.UsuarioRequestDto;
@@ -46,7 +47,7 @@ public class UsuarioController implements UsuarioControllerDoc {
     }
 
     @PutMapping("/{id}")
-    public void atualizarUsuario(@PathVariable Long id, @RequestBody UsuarioRequestDto usuarioDto) {
+    public void atualizarUsuario(@PathVariable Long id, @RequestBody UsuarioUpdateRequestDto usuarioDto) {
         UsuarioData usuarioParaAtualizar = usuarioDto.toModel();
         usuarioParaAtualizar.setId(id);
 

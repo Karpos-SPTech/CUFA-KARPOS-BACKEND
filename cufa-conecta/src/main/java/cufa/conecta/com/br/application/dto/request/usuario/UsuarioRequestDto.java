@@ -5,6 +5,7 @@ import cufa.conecta.com.br.model.UsuarioData;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
+
 public class UsuarioRequestDto {
     @NotBlank
     String nome;
@@ -20,20 +21,26 @@ public class UsuarioRequestDto {
     }
 
     public UsuarioData toModel() {
-        if (nome == null || email == null || senha == null) {
-            throw new BadRequestException("Nome, email, ou senha não podem ser nulos");
+        if (nome == null || email == null || senha == null ) {
+            throw new BadRequestException("Todos os campos devem ser preenchidos");
         }
-        return new UsuarioData(nome, email, senha);
+
+        return new UsuarioData(
+                nome,
+                email,
+                senha
+        );
     }
 
     public String getNome() {
         return nome;
     }
 
-    public String getEmail() { return email; }
+    public String getEmail() {
+        return email;
+    }
 
     public String getSenha() {
         return senha;
     }
-
 }

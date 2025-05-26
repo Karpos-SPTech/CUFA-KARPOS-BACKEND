@@ -68,8 +68,14 @@ public class UsuarioRepository {
                 .orElseThrow(() -> new UsuarioNotFoundException("Usuário não encontrado"));
 
         usuarioExistente.setNome(usuario.getNome());
-        usuarioExistente.setEmail(usuario.getEmail());
-        usuarioExistente.setSenha(usuario.getSenha());
+        usuarioExistente.setCpf(usuario.getCpf());
+        usuarioExistente.setTelefone(usuario.getTelefone());
+        usuarioExistente.setEscolaridade(usuario.getEscolaridade());
+        usuarioExistente.setDt_nascimento(usuario.getDtNascimento());
+        usuarioExistente.setEstado_civil(usuario.getEstado_civil());
+        usuarioExistente.setEstado(usuario.getEstado());
+        usuarioExistente.setCidade(usuario.getCidade());
+        usuarioExistente.setBiografia(usuario.getBiografia());
 
         usuarioDao.save(usuarioExistente);
     }
@@ -88,6 +94,14 @@ public class UsuarioRepository {
         entity.setNome(usuarioData.getNome());
         entity.setEmail(usuarioData.getEmail());
         entity.setSenha(usuarioData.getSenha());
+        entity.setCpf(usuarioData.getCpf());
+        entity.setTelefone(usuarioData.getTelefone());
+        entity.setEscolaridade(usuarioData.getEscolaridade());
+        entity.setDt_nascimento(usuarioData.getDtNascimento());
+        entity.setEstado_civil(usuarioData.getEstado_civil());
+        entity.setEstado(usuarioData.getEstado());
+        entity.setCidade(usuarioData.getCidade());
+        entity.setBiografia(usuarioData.getBiografia());
 
         return entity;
     }
