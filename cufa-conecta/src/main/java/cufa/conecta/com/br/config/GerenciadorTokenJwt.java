@@ -1,5 +1,6 @@
 package cufa.conecta.com.br.config;
 
+import cufa.conecta.com.br.resources.user.entity.UsuarioEntity;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -33,6 +34,16 @@ public class GerenciadorTokenJwt {
         return Jwts.builder().setSubject(authentication.getName())
                 .signWith(parseSecret()).setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + jwtTokenValidity * 1_000)).compact();
+    }
+
+    public String generateTokenFromUser(UsuarioEntity user) {
+        return Jwts.builder()
+                .setSubject(user.getEmail())
+                .claim("roles", "ROLE_USER") // ou outras claims
+                .signWith(parseSecret())
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + jwtTokenValidity * 1_000))
+                .compact();
     }
 
     public <T> T getClaimForToken(String token, Function<Claims, T> claimsResolver) {
