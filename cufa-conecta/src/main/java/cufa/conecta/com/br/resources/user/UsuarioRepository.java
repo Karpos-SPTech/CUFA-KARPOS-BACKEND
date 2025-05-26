@@ -1,8 +1,9 @@
 package cufa.conecta.com.br.resources.user;
 
-import cufa.conecta.com.br.application.exception.*;
-import cufa.conecta.com.br.config.GerenciadorTokenJwt;
 import cufa.conecta.com.br.application.dto.response.usuario.UsuarioTokenDto;
+import cufa.conecta.com.br.application.exception.UsuarioBadRequest;
+import cufa.conecta.com.br.application.exception.UsuarioNotFoundException;
+import cufa.conecta.com.br.config.GerenciadorTokenJwt;
 import cufa.conecta.com.br.model.UsuarioData;
 import cufa.conecta.com.br.resources.user.dao.UsuarioDao;
 import cufa.conecta.com.br.resources.user.entity.UsuarioEntity;
@@ -37,7 +38,9 @@ public class UsuarioRepository {
 
         boolean emailExistente = usuarioDao.findByEmail(userDto.getEmail()).isPresent();
 
-        if (emailExistente) { throw new UsuarioBadRequest("E-mail já cadastrado!"); }
+        if (emailExistente) {
+            throw new UsuarioBadRequest("E-mail já cadastrado!");
+        }
 
         usuarioDao.save(usuarioEntity);
     }
@@ -61,7 +64,9 @@ public class UsuarioRepository {
         );
     }
 
-    public List<UsuarioEntity> listarTodos() { return usuarioDao.findAll(); }
+    public List<UsuarioEntity> listarTodos() {
+        return usuarioDao.findAll();
+    }
 
     public void atualizar(UsuarioData usuario) {
         UsuarioEntity usuarioExistente = usuarioDao.findById(usuario.getId())
