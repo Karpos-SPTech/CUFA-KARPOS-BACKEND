@@ -1,9 +1,9 @@
 package cufa.conecta.com.br.domain.service;
 
 import cufa.conecta.com.br.application.dto.request.LoginDto;
+import cufa.conecta.com.br.application.dto.request.usuario.UsuarioRequestDto;
 import cufa.conecta.com.br.application.dto.response.usuario.UsuarioResponseDto;
 import cufa.conecta.com.br.application.dto.response.usuario.UsuarioTokenDto;
-import cufa.conecta.com.br.application.dto.request.usuario.UsuarioRequestDto;
 import cufa.conecta.com.br.domain.service.observer.CadastroObserver;
 import cufa.conecta.com.br.model.UsuarioData;
 import cufa.conecta.com.br.resources.user.UsuarioRepository;
@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -40,6 +41,10 @@ public class UsuarioService {
         for (CadastroObserver observer: observers) {
             observer.notificar(usuarioData);
         }
+    }
+
+    public UsuarioResponseDto mostrarDados(Long id) {
+        return repository.mostrarDados(id);
     }
 
     public UsuarioTokenDto login(LoginDto usuarioLoginDto) {

@@ -11,7 +11,7 @@ public class ExperienciasEntity {
     Long id;
 
     @Column
-    Long fk_usuario;
+    Long fkUsuario;
 
     @Column
     String cargo;
@@ -39,12 +39,12 @@ public class ExperienciasEntity {
         this.id = id;
     }
 
-    public Long getFk_usuario() {
-        return fk_usuario;
+    public Long getFkUsuario() {
+        return fkUsuario;
     }
 
-    public void setFk_usuario(Long fk_usuario) {
-        this.fk_usuario = fk_usuario;
+    public void setFk_usuario(Long fkUsuario) {
+        this.fkUsuario = fkUsuario;
     }
 
     public String getCargo() {

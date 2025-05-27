@@ -1,5 +1,6 @@
 package cufa.conecta.com.br.resources.user;
 
+import cufa.conecta.com.br.application.dto.response.usuario.UsuarioResponseDto;
 import cufa.conecta.com.br.application.dto.response.usuario.UsuarioTokenDto;
 import cufa.conecta.com.br.application.exception.UsuarioBadRequest;
 import cufa.conecta.com.br.application.exception.UsuarioNotFoundException;
@@ -14,6 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class UsuarioRepository {
@@ -66,6 +68,24 @@ public class UsuarioRepository {
 
     public List<UsuarioEntity> listarTodos() {
         return usuarioDao.findAll();
+    }
+
+    public UsuarioResponseDto mostrarDados(Long id) {
+        UsuarioEntity usuario = usuarioDao.findById(id)
+                .orElseThrow(() -> new UsuarioNotFoundException("Usuário com id " + id + " não encontrado"));
+
+        return new UsuarioResponseDto(
+                usuario.getNome(),
+                usuario.getEmail(),
+                usuario.getCpf(),
+                usuario.getTelefone(),
+                usuario.getEscolaridade(),
+                usuario.getDt_nascimento(),
+                usuario.getEstado_civil(),
+                usuario.getEstado(),
+                usuario.getCidade(),
+                usuario.getBiografia()
+        );
     }
 
     public void atualizar(UsuarioData usuario) {

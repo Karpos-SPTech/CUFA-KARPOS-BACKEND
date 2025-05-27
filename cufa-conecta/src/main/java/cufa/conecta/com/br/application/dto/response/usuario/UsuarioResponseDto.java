@@ -8,19 +8,19 @@ public class UsuarioResponseDto {
     private String cpf;
     private String telefone;
     private String escolaridade;
-    private LocalDate dtNasscimento;
+    private LocalDate dtNascimento;
     private String estadoCivil;
     private String estado;
     private String cidade;
     private String biografia;
 
-    public UsuarioResponseDto(String nome, String email, String cpf, String telefone, String escolaridade, LocalDate dtNasscimento, String estadoCivil, String estado, String cidade, String biografia) {
+    public UsuarioResponseDto(String nome, String email, String cpf, String telefone, String escolaridade, LocalDate dtNascimento, String estadoCivil, String estado, String cidade, String biografia) {
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
         this.telefone = telefone;
         this.escolaridade = escolaridade;
-        this.dtNasscimento = dtNasscimento;
+        this.dtNascimento = dtNascimento;
         this.estadoCivil = estadoCivil;
         this.estado = estado;
         this.cidade = cidade;
@@ -67,12 +67,12 @@ public class UsuarioResponseDto {
         this.escolaridade = escolaridade;
     }
 
-    public LocalDate getDtNasscimento() {
-        return dtNasscimento;
+    public LocalDate getDtNascimento() {
+        return dtNascimento;
     }
 
-    public void setDtNasscimento(LocalDate dtNasscimento) {
-        this.dtNasscimento = dtNasscimento;
+    public void setDtNascimento(LocalDate dtNascimento) {
+        this.dtNascimento = dtNascimento;
     }
 
     public String getEstadoCivil() {

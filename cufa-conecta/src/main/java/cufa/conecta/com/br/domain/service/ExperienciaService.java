@@ -43,8 +43,8 @@ public class ExperienciaService {
         repository.criarExperiencia(experienciaData);
     }
 
-    public List<ExperienciaResponseDto> listarTodas() {
-        List<ExperienciasEntity> experienciasEncontradas = repository.listarTodas();
+    public List<ExperienciaResponseDto> listarPorUsuario(Long fkUsuario) {
+        List<ExperienciasEntity> experienciasEncontradas = repository.listarPorUsuario(fkUsuario);
 
         return experienciasEncontradas.stream()
                 .map(experiencia -> new ExperienciaResponseDto(

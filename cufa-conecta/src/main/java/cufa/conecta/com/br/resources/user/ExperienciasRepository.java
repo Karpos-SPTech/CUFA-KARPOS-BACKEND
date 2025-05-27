@@ -35,8 +35,8 @@ public class ExperienciasRepository {
         return entity;
     }
 
-    public List<ExperienciasEntity> listarTodas(){
-        return experienciasDao.findAll();
+    public List<ExperienciasEntity> listarPorUsuario(Long fkUsuario) {
+        return experienciasDao.findByFkUsuario(fkUsuario);
     }
 
     public void atualizar(ExperienciaData experiencia){

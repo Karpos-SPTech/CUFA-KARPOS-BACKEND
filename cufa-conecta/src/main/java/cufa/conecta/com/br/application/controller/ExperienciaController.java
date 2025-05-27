@@ -33,10 +33,10 @@ public class ExperienciaController {
         experienciaService.criarExperiencia(experienciaDto, email);
     }
 
-    @GetMapping
+    @GetMapping("/listar/{id}")
     @SecurityRequirement(name = "Bearer")
-    public ResponseEntity<List<ExperienciaResponseDto>> listarExperiencias() {
-        List<ExperienciaResponseDto> experienciasEncontradas = experienciaService.listarTodas();
+    public ResponseEntity<List<ExperienciaResponseDto>> listarExperienciasPorUsuario(@PathVariable Long id) {
+        List<ExperienciaResponseDto> experienciasEncontradas = experienciaService.listarPorUsuario(id);
 
         if (experienciasEncontradas.isEmpty()) {
             return ResponseEntity.status(204).build();

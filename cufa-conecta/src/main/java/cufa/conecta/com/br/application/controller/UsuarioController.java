@@ -2,10 +2,10 @@ package cufa.conecta.com.br.application.controller;
 
 import cufa.conecta.com.br.application.documentation.UsuarioControllerDoc;
 import cufa.conecta.com.br.application.dto.request.LoginDto;
+import cufa.conecta.com.br.application.dto.request.usuario.UsuarioRequestDto;
 import cufa.conecta.com.br.application.dto.request.usuario.UsuarioUpdateRequestDto;
 import cufa.conecta.com.br.application.dto.response.usuario.UsuarioResponseDto;
 import cufa.conecta.com.br.application.dto.response.usuario.UsuarioTokenDto;
-import cufa.conecta.com.br.application.dto.request.usuario.UsuarioRequestDto;
 import cufa.conecta.com.br.domain.service.UsuarioService;
 import cufa.conecta.com.br.model.UsuarioData;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -13,6 +13,7 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -52,6 +53,18 @@ public class UsuarioController implements UsuarioControllerDoc {
         usuarioParaAtualizar.setId(id);
 
         service.atualizarUsuario(usuarioParaAtualizar);
+    }
+
+    @GetMapping("perfil/{id}")
+    @SecurityRequirement(name = "Bearer")
+    public ResponseEntity<UsuarioResponseDto> mostrarDados(@PathVariable Long id) {
+        UsuarioResponseDto usuario = service.mostrarDados(id);
+
+        if (usuario == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(usuario);
     }
 
     @DeleteMapping("/{id}")
