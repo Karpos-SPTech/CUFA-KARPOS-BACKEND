@@ -1,15 +1,26 @@
 package cufa.conecta.com.br.application.dto.response.usuario;
 
 public class UsuarioTokenDto {
+    private Long id;
     private String nome;
     private String email;
     private String token;
 
-    public UsuarioTokenDto(String nome, String email, String token) {
+    public UsuarioTokenDto(Long id, String nome, String email, String token) {
+        this.id = id;
         this.nome = nome;
         this.email = email;
         this.token = token;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getNome() {
         return nome;
     }

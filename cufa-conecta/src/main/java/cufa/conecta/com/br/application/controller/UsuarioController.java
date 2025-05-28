@@ -55,7 +55,7 @@ public class UsuarioController implements UsuarioControllerDoc {
         service.atualizarUsuario(usuarioParaAtualizar);
     }
 
-    @GetMapping("perfil/{id}")
+    @GetMapping("/{id}")
     @SecurityRequirement(name = "Bearer")
     public ResponseEntity<UsuarioResponseDto> mostrarDados(@PathVariable Long id) {
         UsuarioResponseDto usuario = service.mostrarDados(id);

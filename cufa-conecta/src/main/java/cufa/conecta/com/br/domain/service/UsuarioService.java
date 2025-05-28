@@ -4,6 +4,7 @@ import cufa.conecta.com.br.application.dto.request.LoginDto;
 import cufa.conecta.com.br.application.dto.request.usuario.UsuarioRequestDto;
 import cufa.conecta.com.br.application.dto.response.usuario.UsuarioResponseDto;
 import cufa.conecta.com.br.application.dto.response.usuario.UsuarioTokenDto;
+import cufa.conecta.com.br.config.GerenciadorTokenJwt;
 import cufa.conecta.com.br.domain.service.observer.CadastroObserver;
 import cufa.conecta.com.br.model.UsuarioData;
 import cufa.conecta.com.br.resources.user.UsuarioRepository;
@@ -12,7 +13,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -21,7 +21,11 @@ public class UsuarioService {
     private final PasswordEncoder passwordEncoder;
     private final List<CadastroObserver> observers;
 
-    public UsuarioService(UsuarioRepository repository, PasswordEncoder passwordEncoder, List<CadastroObserver> observers) {
+    public UsuarioService(
+            UsuarioRepository repository,
+            PasswordEncoder passwordEncoder,
+            List<CadastroObserver> observers
+    ) {
         this.repository = repository;
         this.passwordEncoder = passwordEncoder;
         this.observers = observers;

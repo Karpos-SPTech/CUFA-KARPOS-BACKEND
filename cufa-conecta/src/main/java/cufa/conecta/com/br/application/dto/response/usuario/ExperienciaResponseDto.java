@@ -3,6 +3,7 @@ package cufa.conecta.com.br.application.dto.response.usuario;
 import java.time.LocalDate;
 
 public class ExperienciaResponseDto {
+    private Long id;
     private String cargo;
     private String empresa;
     private String cidade;
@@ -10,7 +11,8 @@ public class ExperienciaResponseDto {
     private LocalDate dtInicio;
     private LocalDate dtFim;
 
-    public ExperienciaResponseDto(String cargo, String empresa, String cidade, String estado, LocalDate dtInicio, LocalDate dtFim) {
+    public ExperienciaResponseDto(Long id, String cargo, String empresa, String cidade, String estado, LocalDate dtInicio, LocalDate dtFim) {
+        this.id = id;
         this.cargo = cargo;
         this.empresa = empresa;
         this.cidade = cidade;
@@ -20,6 +22,8 @@ public class ExperienciaResponseDto {
     }
 
     // Getters
+    public Long getId() { return id; }
+
     public String getCargo() {
         return cargo;
     }

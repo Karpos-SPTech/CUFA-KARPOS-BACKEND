@@ -48,6 +48,7 @@ public class ExperienciaService {
 
         return experienciasEncontradas.stream()
                 .map(experiencia -> new ExperienciaResponseDto(
+                        experiencia.getId(),
                         experiencia.getCargo(),
                         experiencia.getEmpresa(),
                         experiencia.getCidade(),

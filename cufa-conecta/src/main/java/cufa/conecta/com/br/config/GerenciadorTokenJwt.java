@@ -1,5 +1,6 @@
 package cufa.conecta.com.br.config;
 
+import cufa.conecta.com.br.application.dto.response.usuario.UsuarioTokenDto;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
