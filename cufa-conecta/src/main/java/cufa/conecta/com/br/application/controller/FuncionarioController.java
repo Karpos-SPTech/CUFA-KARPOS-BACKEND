@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/funcionarios")
 public class FuncionarioController {
@@ -22,4 +24,11 @@ public class FuncionarioController {
     FuncionarioResponseDto response = service.criarFuncionario(dto);
     return ResponseEntity.status(HttpStatus.CREATED).body(response);
   }
+
+  @GetMapping("/{fkEmpresa}")
+  public ResponseEntity<List<FuncionarioResponseDto>> listarPorEmpresa(@PathVariable Long fkEmpresa) {
+    List<FuncionarioResponseDto> funcionarios = service.listarPorEmpresa(fkEmpresa);
+    return ResponseEntity.ok(funcionarios);
+  }
+
 }

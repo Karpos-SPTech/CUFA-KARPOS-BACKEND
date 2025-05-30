@@ -7,6 +7,8 @@ import cufa.conecta.com.br.resources.empresa.dao.EmpresaDao;
 import cufa.conecta.com.br.resources.empresa.entity.EmpresaEntity;
 import cufa.conecta.com.br.resources.empresa.entity.PublicacaoEntity;
 import java.time.LocalDateTime;
+import java.util.List;
+
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -40,4 +42,59 @@ public class PublicacaoService {
 
     return new PublicacaoResponseDto(salvo);
   }
+
+  public List<PublicacaoResponseDto> listarTodasPublicacoes() {
+    List<PublicacaoEntity> publicacoes = repository.buscarTodas();
+    return publicacoes.stream()
+            .map(PublicacaoResponseDto::new)
+            .toList();
+  }
+
+
+  public List<PublicacaoResponseDto> listarPublicacoesDaEmpresa() {
+    String emailEmpresaLogada = SecurityContextHolder.getContext().getAuthentication().getName();
+
+    EmpresaEntity empresa =
+            empresaDao
+                    .findByEmail(emailEmpresaLogada)
+                    .orElseThrow(() -> new RuntimeException("Empresa não encontrada"));
+
+    List<PublicacaoEntity> publicacoes = repository.buscarPorEmpresa(empresa);
+
+    return publicacoes.stream()
+            .map(PublicacaoResponseDto::new)
+            .toList();
+  }
+
+  public PublicacaoResponseDto editarPublicacao(Long id, PublicacaoRequestDto dto) {
+    String emailEmpresaLogada = SecurityContextHolder.getContext().getAuthentication().getName();
+    EmpresaEntity empresa =
+            empresaDao
+                    .findByEmail(emailEmpresaLogada)
+                    .orElseThrow(() -> new RuntimeException("Empresa não encontrada"));
+
+    PublicacaoEntity publicacao =
+            repository.findById(id).orElseThrow(() -> new RuntimeException("Publicação não encontrada"));
+
+    publicacao.setDescricao(dto.descricao);
+    publicacao.setTipoContrato(dto.tipoContrato);
+    publicacao.setDtExpiracao(dto.dtExpiracao);
+
+    PublicacaoEntity atualizada = repository.save(publicacao);
+    return new PublicacaoResponseDto(atualizada);
+  }
+
+  public void deletarPublicacao(Long id) {
+    String emailEmpresaLogada = SecurityContextHolder.getContext().getAuthentication().getName();
+    EmpresaEntity empresa =
+            empresaDao
+                    .findByEmail(emailEmpresaLogada)
+                    .orElseThrow(() -> new RuntimeException("Empresa não encontrada"));
+
+    PublicacaoEntity publicacao =
+            repository.findById(id).orElseThrow(() -> new RuntimeException("Publicação não encontrada"));
+
+    repository.delete(publicacao);
+  }
+
 }

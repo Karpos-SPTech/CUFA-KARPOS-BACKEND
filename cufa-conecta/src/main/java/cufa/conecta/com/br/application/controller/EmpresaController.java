@@ -40,7 +40,7 @@ public class EmpresaController implements EmpresaControllerDoc {
     ResponseCookie cookie =
         ResponseCookie.from("jwt", empresaToken.getToken())
             .httpOnly(true)
-            .secure(false) // true em produção com HTTPS
+            .secure(false)
             .path("/")
             .maxAge(3600)
             .sameSite("Strict")

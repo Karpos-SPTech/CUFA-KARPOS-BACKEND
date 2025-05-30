@@ -2,7 +2,8 @@ package cufa.conecta.com.br.resources.empresa;
 
 import cufa.conecta.com.br.resources.empresa.dao.FuncionarioDao;
 import cufa.conecta.com.br.resources.empresa.entity.FuncionarioEntity;
-import java.util.Optional;
+
+import java.util.List;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -18,11 +19,12 @@ public class FuncionarioRepository {
     return funcionarioDao.save(funcionario);
   }
 
-  public Optional<FuncionarioEntity> findByEmail(String email) {
-    return funcionarioDao.findByEmail(email);
-  }
-
   public boolean existsByEmail(String email) {
     return funcionarioDao.findByEmail(email).isPresent();
   }
+
+  public List<FuncionarioEntity> findByEmpresaId(Long empresaId) {
+    return funcionarioDao.findByEmpresaId(empresaId);
+  }
+
 }
