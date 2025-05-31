@@ -7,12 +7,11 @@ import cufa.conecta.com.br.resources.empresa.FuncionarioRepository;
 import cufa.conecta.com.br.resources.empresa.dao.EmpresaDao;
 import cufa.conecta.com.br.resources.empresa.entity.EmpresaEntity;
 import cufa.conecta.com.br.resources.empresa.entity.FuncionarioEntity;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class FuncionarioService {
@@ -57,7 +56,9 @@ public class FuncionarioService {
   public List<FuncionarioResponseDto> listarPorEmpresa(Long fkEmpresa) {
     // Verifica se a empresa autenticada tem permissão para acessar esses dados
     String emailEmpresaLogada = SecurityContextHolder.getContext().getAuthentication().getName();
-    EmpresaEntity empresaAutenticada = empresaDao.findByEmail(emailEmpresaLogada)
+    EmpresaEntity empresaAutenticada =
+        empresaDao
+            .findByEmail(emailEmpresaLogada)
             .orElseThrow(() -> new RuntimeException("Empresa não encontrada"));
 
     if (!empresaAutenticada.getId().equals(fkEmpresa)) {
@@ -65,9 +66,6 @@ public class FuncionarioService {
     }
 
     List<FuncionarioEntity> funcionarios = funcionarioRepository.findByEmpresaId(fkEmpresa);
-    return funcionarios.stream()
-            .map(FuncionarioResponseDto::new)
-            .collect(Collectors.toList());
+    return funcionarios.stream().map(FuncionarioResponseDto::new).collect(Collectors.toList());
   }
-
 }

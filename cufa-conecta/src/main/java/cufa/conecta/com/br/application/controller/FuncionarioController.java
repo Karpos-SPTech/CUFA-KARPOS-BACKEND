@@ -3,11 +3,10 @@ package cufa.conecta.com.br.application.controller;
 import cufa.conecta.com.br.application.dto.request.empresa.FuncionarioRequestDto;
 import cufa.conecta.com.br.application.dto.response.empresa.FuncionarioResponseDto;
 import cufa.conecta.com.br.domain.service.empresa.FuncionarioService;
+import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/funcionarios")
@@ -26,9 +25,9 @@ public class FuncionarioController {
   }
 
   @GetMapping("/{fkEmpresa}")
-  public ResponseEntity<List<FuncionarioResponseDto>> listarPorEmpresa(@PathVariable Long fkEmpresa) {
+  public ResponseEntity<List<FuncionarioResponseDto>> listarPorEmpresa(
+      @PathVariable Long fkEmpresa) {
     List<FuncionarioResponseDto> funcionarios = service.listarPorEmpresa(fkEmpresa);
     return ResponseEntity.ok(funcionarios);
   }
-
 }

@@ -4,11 +4,10 @@ import cufa.conecta.com.br.application.dto.request.empresa.PublicacaoRequestDto;
 import cufa.conecta.com.br.application.dto.response.empresa.PublicacaoResponseDto;
 import cufa.conecta.com.br.domain.service.empresa.PublicacaoService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/publicacao")
@@ -41,7 +40,7 @@ public class PublicacaoController {
 
   @PutMapping("/{id}")
   public ResponseEntity<PublicacaoResponseDto> editar(
-          @PathVariable Long id, @RequestBody PublicacaoRequestDto dto) {
+      @PathVariable Long id, @RequestBody PublicacaoRequestDto dto) {
     PublicacaoResponseDto response = service.editarPublicacao(id, dto);
     return ResponseEntity.ok(response);
   }
