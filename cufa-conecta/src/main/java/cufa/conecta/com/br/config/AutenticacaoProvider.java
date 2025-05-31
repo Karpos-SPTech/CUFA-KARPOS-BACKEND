@@ -9,7 +9,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-public class  AutenticacaoProvider implements AuthenticationProvider {
+public class AutenticacaoProvider implements AuthenticationProvider {
   private final AutenticacaoRepository usuarioAutorizacao;
   private final PasswordEncoder passwordEncoder;
 
