@@ -96,16 +96,16 @@ public class SecurityConfiguracao {
     CorsConfiguration configuracao = new CorsConfiguration();
     configuracao.setAllowedOrigins(List.of("http://localhost:5173")); // <--- isso aqui!
     configuracao.setAllowedMethods(
-            Arrays.asList(
-                    HttpMethod.GET.name(),
-                    HttpMethod.POST.name(),
-                    HttpMethod.PUT.name(),
-                    HttpMethod.PATCH.name(),
-                    HttpMethod.DELETE.name(),
-                    HttpMethod.OPTIONS.name()
-            ));
+        Arrays.asList(
+            HttpMethod.GET.name(),
+            HttpMethod.POST.name(),
+            HttpMethod.PUT.name(),
+            HttpMethod.PATCH.name(),
+            HttpMethod.DELETE.name(),
+            HttpMethod.OPTIONS.name()));
     configuracao.setAllowedHeaders(List.of("*")); // Permite qualquer header
-    configuracao.setAllowCredentials(true); // Permite cookies se estiver usando autenticação via cookie
+    configuracao.setAllowCredentials(
+        true); // Permite cookies se estiver usando autenticação via cookie
     configuracao.setExposedHeaders(List.of(HttpHeaders.CONTENT_DISPOSITION));
 
     UrlBasedCorsConfigurationSource origem = new UrlBasedCorsConfigurationSource();
@@ -113,7 +113,6 @@ public class SecurityConfiguracao {
 
     return origem;
   }
-
 
   @Bean
   public AuthenticationManager authenticationManager(

@@ -1,6 +1,7 @@
 package cufa.conecta.com.br.domain.service.empresa;
 
 import cufa.conecta.com.br.application.dto.request.LoginDto;
+import cufa.conecta.com.br.application.dto.request.empresa.BiografiaRequestDto;
 import cufa.conecta.com.br.application.dto.request.empresa.EmpresaRequestDto;
 import cufa.conecta.com.br.application.dto.response.empresa.EmpresaResponseDto;
 import cufa.conecta.com.br.application.dto.response.empresa.EmpresaTokenDto;
@@ -9,6 +10,7 @@ import cufa.conecta.com.br.resources.empresa.EmpresaRepository;
 import cufa.conecta.com.br.resources.empresa.entity.EmpresaEntity;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -70,5 +72,13 @@ public class EmpresaService {
 
   public void deletar(Long id) {
     repository.deletar(id);
+  }
+
+  public void atualizarBiografia(BiografiaRequestDto dto) {
+    EmpresaEntity empresa =
+        (EmpresaEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    empresa.setBiografia(dto.getBiografia());
+
+    repository.atualizarBiografia(empresa);
   }
 }

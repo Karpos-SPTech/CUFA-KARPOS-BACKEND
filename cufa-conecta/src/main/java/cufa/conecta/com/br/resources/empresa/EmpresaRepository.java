@@ -44,17 +44,18 @@ public class EmpresaRepository {
   }
 
   public EmpresaTokenDto autenticar(EmpresaData empresa) {
-    authenticateCredentials(empresa.getEmail(), empresa.getSenha());
-
     EmpresaEntity empresaAutenticada = buscarEmpresaPorEmail(empresa.getEmail());
-    SecurityContextHolder.getContext()
-        .setAuthentication(
-            new UsernamePasswordAuthenticationToken(empresa.getEmail(), empresa.getSenha()));
 
-    String token =
-        gerenciadorTokenJwt.generateToken(
-            new UsernamePasswordAuthenticationToken(empresa.getEmail(), empresa.getSenha()));
+    Authentication autenticacao =
+        new UsernamePasswordAuthenticationToken(
+            empresaAutenticada, // objeto completo
+            null, // não guardar senha
+            List.of() // sem roles (ok no seu caso)
+            );
 
+    SecurityContextHolder.getContext().setAuthentication(autenticacao);
+
+    String token = gerenciadorTokenJwt.generateToken(autenticacao);
     return new EmpresaTokenDto(empresaAutenticada.getNome(), empresaAutenticada.getEmail(), token);
   }
 
@@ -87,6 +88,10 @@ public class EmpresaRepository {
             .orElseThrow(() -> new EmpresaNotFoundException("Empresa não encontrada"));
 
     empresaDao.delete(empresa);
+  }
+
+  public void atualizarBiografia(EmpresaEntity empresa) {
+    empresaDao.save(empresa);
   }
 
   //     ------------------ Métodos privados --------------

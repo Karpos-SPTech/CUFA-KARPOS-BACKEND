@@ -2,6 +2,7 @@ package cufa.conecta.com.br.application.controller;
 
 import cufa.conecta.com.br.application.documentation.EmpresaControllerDoc;
 import cufa.conecta.com.br.application.dto.request.LoginDto;
+import cufa.conecta.com.br.application.dto.request.empresa.BiografiaRequestDto;
 import cufa.conecta.com.br.application.dto.request.empresa.EmpresaRequestDto;
 import cufa.conecta.com.br.application.dto.response.empresa.EmpresaResponseDto;
 import cufa.conecta.com.br.application.dto.response.empresa.EmpresaTokenDto;
@@ -63,6 +64,8 @@ public class EmpresaController implements EmpresaControllerDoc {
   }
 
   @PutMapping("/{id}")
+  @SecurityRequirement(name = "Bearer")
+  @ResponseStatus(HttpStatus.OK)
   public void atualizarEmpresa(@PathVariable Long id, @RequestBody EmpresaRequestDto empresaDto) {
     EmpresaData empresaAtualizada = empresaDto.toModel();
     empresaAtualizada.setId(id);
@@ -71,7 +74,16 @@ public class EmpresaController implements EmpresaControllerDoc {
   }
 
   @DeleteMapping("/{id}")
+  @SecurityRequirement(name = "Bearer")
+  @ResponseStatus(HttpStatus.NO_CONTENT)
   public void deletarEmpresa(@PathVariable Long id) {
     service.deletar(id);
+  }
+
+  @PatchMapping("/biografia")
+  @SecurityRequirement(name = "Bearer")
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  public void adicionarBiografia(@RequestBody @Valid BiografiaRequestDto biografiaDto) {
+    service.atualizarBiografia(biografiaDto);
   }
 }

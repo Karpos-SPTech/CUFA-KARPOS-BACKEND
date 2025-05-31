@@ -16,6 +16,7 @@ public class EmpresaEntity {
   @Column String endereco;
   @Column String cnpj;
   @Column String area;
+  @Column String biografia;
 
   public Long getId() {
     return idEmpresa;
@@ -87,5 +88,13 @@ public class EmpresaEntity {
 
   public void setArea(String area) {
     this.area = area;
+  }
+
+  public String getBiografia() {
+    return biografia;
+  }
+
+  public void setBiografia(String biografia) {
+    this.biografia = biografia;
   }
 }
