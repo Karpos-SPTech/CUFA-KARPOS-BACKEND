@@ -2,7 +2,6 @@ package cufa.conecta.com.br.resources.empresa;
 
 import cufa.conecta.com.br.resources.empresa.dao.FuncionarioDao;
 import cufa.conecta.com.br.resources.empresa.entity.FuncionarioEntity;
-
 import java.util.List;
 import org.springframework.stereotype.Repository;
 
@@ -26,5 +25,4 @@ public class FuncionarioRepository {
   public List<FuncionarioEntity> findByEmpresaId(Long empresaId) {
     return funcionarioDao.findByEmpresaId(empresaId);
   }
-
 }
