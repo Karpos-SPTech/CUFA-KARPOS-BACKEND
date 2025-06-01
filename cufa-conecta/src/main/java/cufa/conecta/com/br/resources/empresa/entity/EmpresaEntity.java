@@ -2,93 +2,99 @@ package cufa.conecta.com.br.resources.empresa.entity;
 
 import jakarta.persistence.*;
 
-@Entity(name = "empresas")
+@Entity(name = "cadastro_empresa")
 public class EmpresaEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    @Column
-    String nome;
-    @Column
-    String email;
-    @Column
-    String senha;
-    @Column
-    String cep;
-    @Column
-    String numero;
-    @Column
-    String endereco;
-    @Column
-    String cnpj;
-    @Column
-    String area;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  Long idEmpresa;
 
-    public Long getId() { return id; }
+  @Column String nome;
+  @Column String email;
+  @Column String senha;
+  @Column String cep;
+  @Column String numero;
+  @Column String endereco;
+  @Column String cnpj;
+  @Column String area;
+  @Column String biografia;
 
-    public void setId(Long id) { this.id = id; }
+  public Long getId() {
+    return idEmpresa;
+  }
 
-    public String getNome() {
-        return nome;
-    }
+  public void setId(Long id) {
+    this.idEmpresa = id;
+  }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+  public String getNome() {
+    return nome;
+  }
 
-    public String getEmail() {
-        return email;
-    }
+  public void setNome(String nome) {
+    this.nome = nome;
+  }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+  public String getEmail() {
+    return email;
+  }
 
-    public String getSenha() {
-        return senha;
-    }
+  public void setEmail(String email) {
+    this.email = email;
+  }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
+  public String getSenha() {
+    return senha;
+  }
 
-    public String getCep() {
-        return cep;
-    }
+  public void setSenha(String senha) {
+    this.senha = senha;
+  }
 
-    public void setCep(String cep) {
-        this.cep = cep;
-    }
+  public String getCep() {
+    return cep;
+  }
 
-    public String getNumero() {
-        return numero;
-    }
+  public void setCep(String cep) {
+    this.cep = cep;
+  }
 
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
+  public String getNumero() {
+    return numero;
+  }
 
-    public String getEndereco() {
-        return endereco;
-    }
+  public void setNumero(String numero) {
+    this.numero = numero;
+  }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
+  public String getEndereco() {
+    return endereco;
+  }
 
-    public String getCnpj() {
-        return cnpj;
-    }
+  public void setEndereco(String endereco) {
+    this.endereco = endereco;
+  }
 
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
-    }
+  public String getCnpj() {
+    return cnpj;
+  }
 
-    public String getArea() {
-        return area;
-    }
+  public void setCnpj(String cnpj) {
+    this.cnpj = cnpj;
+  }
 
-    public void setArea(String area) {
-        this.area = area;
-    }
+  public String getArea() {
+    return area;
+  }
+
+  public void setArea(String area) {
+    this.area = area;
+  }
+
+  public String getBiografia() {
+    return biografia;
+  }
+
+  public void setBiografia(String biografia) {
+    this.biografia = biografia;
+  }
 }
