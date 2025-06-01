@@ -1,6 +1,7 @@
 package cufa.conecta.com.br.resources.empresa.entity;
 
 import jakarta.persistence.*;
+import java.time.LocalDate;
 
 @Entity(name = "cadastro_empresa")
 public class EmpresaEntity {
@@ -17,6 +18,15 @@ public class EmpresaEntity {
   @Column String cnpj;
   @Column String area;
   @Column String biografia;
+  @Column LocalDate dtCadastro;
+
+  public LocalDate getDtCadastro() {
+    return dtCadastro;
+  }
+
+  public void setDtCadastro(LocalDate dtCadastro) {
+    this.dtCadastro = dtCadastro;
+  }
 
   public Long getId() {
     return idEmpresa;

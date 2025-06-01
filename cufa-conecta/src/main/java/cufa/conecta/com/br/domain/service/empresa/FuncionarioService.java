@@ -3,6 +3,7 @@ package cufa.conecta.com.br.domain.service.empresa;
 import cufa.conecta.com.br.application.dto.request.empresa.FuncionarioRequestDto;
 import cufa.conecta.com.br.application.dto.response.empresa.FuncionarioResponseDto;
 import cufa.conecta.com.br.domain.enums.Cargo;
+import cufa.conecta.com.br.model.FuncionarioData;
 import cufa.conecta.com.br.resources.empresa.FuncionarioRepository;
 import cufa.conecta.com.br.resources.empresa.dao.EmpresaDao;
 import cufa.conecta.com.br.resources.empresa.entity.EmpresaEntity;
@@ -67,5 +68,13 @@ public class FuncionarioService {
 
     List<FuncionarioEntity> funcionarios = funcionarioRepository.findByEmpresaId(fkEmpresa);
     return funcionarios.stream().map(FuncionarioResponseDto::new).collect(Collectors.toList());
+  }
+
+  public void atualizar(FuncionarioData funcionario) {
+    funcionarioRepository.atualizar(funcionario);
+  }
+
+  public void deletar(Long id) {
+    funcionarioRepository.deletar(id);
   }
 }

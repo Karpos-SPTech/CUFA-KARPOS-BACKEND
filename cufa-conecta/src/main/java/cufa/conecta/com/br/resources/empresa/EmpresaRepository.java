@@ -7,6 +7,7 @@ import cufa.conecta.com.br.config.GerenciadorTokenJwt;
 import cufa.conecta.com.br.model.EmpresaData;
 import cufa.conecta.com.br.resources.empresa.dao.EmpresaDao;
 import cufa.conecta.com.br.resources.empresa.entity.EmpresaEntity;
+import java.time.LocalDate;
 import java.util.List;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -106,6 +107,7 @@ public class EmpresaRepository {
     entity.setEndereco(empresaData.getEndereco());
     entity.setCnpj(empresaData.getCnpj());
     entity.setArea(empresaData.getArea());
+    entity.setDtCadastro(LocalDate.now());
 
     return entity;
   }

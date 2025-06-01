@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/CUFA-KARPOS-BACKEND.iml" filepath="$PROJECT_DIR$/.idea/CUFA-KARPOS-BACKEND.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/cufa-conecta.main.iml" filepath="$PROJECT_DIR$/.idea/modules/cufa-conecta.main.iml" />
     </modules>
   </component>
 </project>
