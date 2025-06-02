@@ -3,107 +3,107 @@ package cufa.conecta.com.br.application.dto.response.usuario;
 import java.time.LocalDate;
 
 public class UsuarioResponseDto {
-    private String nome;
-    private String email;
-    private String cpf;
-    private String telefone;
-    private String escolaridade;
-    private LocalDate dtNascimento;
-    private String estadoCivil;
-    private String estado;
-    private String cidade;
-    private String biografia;
+  private String nome;
+  private String email;
+  private String cpf;
+  private String telefone;
+  private String escolaridade;
+  private LocalDate dtNascimento;
+  private String estadoCivil;
+  private String estado;
+  private String cidade;
+  private String biografia;
 
-    public UsuarioResponseDto(String nome, String email, String cpf, String telefone, String escolaridade, LocalDate dtNascimento, String estadoCivil, String estado, String cidade, String biografia) {
-        this.nome = nome;
-        this.email = email;
-        this.cpf = cpf;
-        this.telefone = telefone;
-        this.escolaridade = escolaridade;
-        this.dtNascimento = dtNascimento;
-        this.estadoCivil = estadoCivil;
-        this.estado = estado;
-        this.cidade = cidade;
-        this.biografia = biografia;
-    }
+  public UsuarioResponseDto(
+      String nome,
+      String cpf,
+      String telefone,
+      String escolaridade,
+      LocalDate dtNascimento,
+      String estadoCivil,
+      String estado,
+      String cidade,
+      String biografia) {
+    this.nome = nome;
+    this.cpf = cpf;
+    this.telefone = telefone;
+    this.escolaridade = escolaridade;
+    this.dtNascimento = dtNascimento;
+    this.estadoCivil = estadoCivil;
+    this.estado = estado;
+    this.cidade = cidade;
+    this.biografia = biografia;
+  }
 
-    public String getNome() {
-        return nome;
-    }
+  public String getNome() {
+    return nome;
+  }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+  public void setNome(String nome) {
+    this.nome = nome;
+  }
 
-    public String getEmail() {
-        return email;
-    }
+  public String getCpf() {
+    return cpf;
+  }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+  public void setCpf(String cpf) {
+    this.cpf = cpf;
+  }
 
-    public String getCpf() {
-        return cpf;
-    }
+  public String getTelefone() {
+    return telefone;
+  }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
+  public void setTelefone(String telefone) {
+    this.telefone = telefone;
+  }
 
-    public String getTelefone() {
-        return telefone;
-    }
+  public String getEscolaridade() {
+    return escolaridade;
+  }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
+  public void setEscolaridade(String escolaridade) {
+    this.escolaridade = escolaridade;
+  }
 
-    public String getEscolaridade() {
-        return escolaridade;
-    }
+  public LocalDate getDtNascimento() {
+    return dtNascimento;
+  }
 
-    public void setEscolaridade(String escolaridade) {
-        this.escolaridade = escolaridade;
-    }
+  public void setDtNascimento(LocalDate dtNascimento) {
+    this.dtNascimento = dtNascimento;
+  }
 
-    public LocalDate getDtNascimento() {
-        return dtNascimento;
-    }
+  public String getEstadoCivil() {
+    return estadoCivil;
+  }
 
-    public void setDtNascimento(LocalDate dtNascimento) {
-        this.dtNascimento = dtNascimento;
-    }
+  public void setEstadoCivil(String estadoCivil) {
+    this.estadoCivil = estadoCivil;
+  }
 
-    public String getEstadoCivil() {
-        return estadoCivil;
-    }
+  public String getEstado() {
+    return estado;
+  }
 
-    public void setEstadoCivil(String estadoCivil) {
-        this.estadoCivil = estadoCivil;
-    }
+  public void setEstado(String estado) {
+    this.estado = estado;
+  }
 
-    public String getEstado() {
-        return estado;
-    }
+  public String getCidade() {
+    return cidade;
+  }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
+  public void setCidade(String cidade) {
+    this.cidade = cidade;
+  }
 
-    public String getCidade() {
-        return cidade;
-    }
+  public String getBiografia() {
+    return biografia;
+  }
 
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
-    }
-
-    public String getBiografia() {
-        return biografia;
-    }
-
-    public void setBiografia(String biografia) {
-        this.biografia = biografia;
-    }
+  public void setBiografia(String biografia) {
+    this.biografia = biografia;
+  }
 }

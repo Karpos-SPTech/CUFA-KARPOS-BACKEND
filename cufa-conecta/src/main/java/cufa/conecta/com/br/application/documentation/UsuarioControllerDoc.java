@@ -1,6 +1,7 @@
 package cufa.conecta.com.br.application.documentation;
 
 import cufa.conecta.com.br.application.dto.request.usuario.UsuarioRequestDto;
+import cufa.conecta.com.br.application.dto.request.usuario.UsuarioUpdateRequestDto;
 import cufa.conecta.com.br.application.dto.response.ApiExceptionDto;
 import cufa.conecta.com.br.application.dto.response.usuario.UsuarioResponseDto;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
@@ -52,11 +53,11 @@ public interface UsuarioControllerDoc {
                         name = "Erro na busca dos usuários",
                         value =
                             """
-                                {
-                                "status": "INTERNAL_SERVER_ERROR",
-                                "message": "Banco de dados fora de serviço"
-                                }
-                                """)
+                                                                            {
+                                                                            "status": "INTERNAL_SERVER_ERROR",
+                                                                            "message": "Banco de dados fora de serviço"
+                                                                            }
+                                                                            """)
                   })
             })
       })
@@ -77,13 +78,13 @@ public interface UsuarioControllerDoc {
                         name = "Obteve êxito na criação do usuário",
                         value =
                             """
-                                {
-                                    "id": "1",
-                                    "name": "Usuario Novo",
-                                    "email": "usuario.novo@gmail.com",
-                                    "senha": "12345678"
-                                }
-                                """)
+                                                                            {
+                                                                                "id": "1",
+                                                                                "name": "Usuario Novo",
+                                                                                "email": "usuario.novo@gmail.com",
+                                                                                "senha": "12345678"
+                                                                            }
+                                                                            """)
                   })
             }),
         @ApiResponse(
@@ -98,11 +99,11 @@ public interface UsuarioControllerDoc {
                         name = "Os dados inseridos do usuário são inválidos",
                         value =
                             """
-                                {
-                                    "status": "BAD_REQUEST",
-                                    "message": "O usuário inserido é inválido"
-                                }
-                                """)
+                                                                            {
+                                                                                "status": "BAD_REQUEST",
+                                                                                "message": "O usuário inserido é inválido"
+                                                                            }
+                                                                            """)
                   })
             }),
         @ApiResponse(
@@ -117,11 +118,11 @@ public interface UsuarioControllerDoc {
                         name = "Erro na busca do usuário",
                         value =
                             """
-                                {
-                                "status": "INTERNAL_SERVER_ERROR",
-                                "message": "Banco de dados fora de serviço"
-                                }
-                                """)
+                                                                            {
+                                                                            "status": "INTERNAL_SERVER_ERROR",
+                                                                            "message": "Banco de dados fora de serviço"
+                                                                            }
+                                                                            """)
                   })
             })
       })
@@ -142,13 +143,13 @@ public interface UsuarioControllerDoc {
                         name = "Obteve êxito na alteração dos dados do usuário",
                         value =
                             """
-                                {
-                                "id": "1",
-                                "name": "Novo usuário",
-                                "email": "novo.usuario@gmail.com",
-                                "senha": "12345677"
-                                }
-                                """)
+                                                                            {
+                                                                            "id": "1",
+                                                                            "name": "Novo usuário",
+                                                                            "email": "novo.usuario@gmail.com",
+                                                                            "senha": "12345677"
+                                                                            }
+                                                                            """)
                   })
             }),
         @ApiResponse(
@@ -163,11 +164,11 @@ public interface UsuarioControllerDoc {
                         name = "O id da empresa não foi encontrado",
                         value =
                             """
-                                {
-                                "status": "NOT_FOUND",
-                                "message": "O usuário inserido não foi encontrado"
-                                }
-                                """)
+                                                                            {
+                                                                            "status": "NOT_FOUND",
+                                                                            "message": "O usuário inserido não foi encontrado"
+                                                                            }
+                                                                            """)
                   })
             }),
         @ApiResponse(
@@ -182,15 +183,15 @@ public interface UsuarioControllerDoc {
                         name = "Erro na busca do usuário",
                         value =
                             """
-                                {
-                                "status": "INTERNAL_SERVER_ERROR",
-                                "message": "Banco de dados fora de serviço"
-                                }
-                                """)
+                                                                            {
+                                                                            "status": "INTERNAL_SERVER_ERROR",
+                                                                            "message": "Banco de dados fora de serviço"
+                                                                            }
+                                                                            """)
                   })
             })
       })
-  void atualizarUsuario(@Valid Long id, @Valid UsuarioRequestDto usuarioDto);
+  void atualizarUsuario(@Valid Long id, @Valid UsuarioUpdateRequestDto usuarioDto); // Alterado aqui
 
   @Operation(summary = "Realiza a deleção de um usuário")
   @ApiResponses(
@@ -208,11 +209,11 @@ public interface UsuarioControllerDoc {
                         name = "Erro na busca do usuário",
                         value =
                             """
-                                {
-                                "status": "NOT_FOUND",
-                                "message": "O usuário inserido não foi encontrado"
-                                }
-                                """)
+                                                                            {
+                                                                            "status": "NOT_FOUND",
+                                                                            "message": "O usuário inserido não foi encontrado"
+                                                                            }
+                                                                            """)
                   })
             })
       })

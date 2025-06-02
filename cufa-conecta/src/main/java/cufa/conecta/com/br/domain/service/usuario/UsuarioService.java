@@ -41,6 +41,10 @@ public class UsuarioService {
     }
   }
 
+  public UsuarioResponseDto mostrarDados(Long id) {
+    return repository.mostrarDados(id);
+  }
+
   public UsuarioTokenDto login(LoginDto usuarioLoginDto) {
     UsuarioData usuarioData = new UsuarioData();
 
@@ -54,7 +58,18 @@ public class UsuarioService {
     List<UsuarioEntity> usuariosEncontrados = repository.listarTodos();
 
     return usuariosEncontrados.stream()
-        .map(usuario -> new UsuarioResponseDto(usuario.getNome(), usuario.getEmail()))
+        .map(
+            usuario ->
+                new UsuarioResponseDto(
+                    usuario.getNome(),
+                    usuario.getCpf(),
+                    usuario.getTelefone(),
+                    usuario.getEscolaridade(),
+                    usuario.getDt_nascimento(),
+                    usuario.getEstado_civil(),
+                    usuario.getEstado(),
+                    usuario.getCidade(),
+                    usuario.getBiografia()))
         .collect(Collectors.toList());
   }
 

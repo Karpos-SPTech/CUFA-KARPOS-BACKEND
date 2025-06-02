@@ -2,96 +2,67 @@ package cufa.conecta.com.br.resources.user.entity;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
-
 @Entity(name = "experiencias")
 public class ExperienciasEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  Long id;
 
-    @Column
-    Long fkUsuario;
+  @Column Long fkUsuario;
 
-    @Column
-    String cargo;
+  @Column String cargo;
 
-    @Column
-    String empresa;
+  @Column String empresa;
 
-    @Column
-    String cidade;
+  @Column String dt_inicio;
 
-    @Column
-    String estado;
+  @Column String dt_fim;
 
-    @Column
-    LocalDate dt_inicio;
+  public Long getId() {
+    return id;
+  }
 
-    @Column
-    LocalDate dt_fim;
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public Long getId() {
-        return id;
-    }
+  public Long getFkUsuario() {
+    return fkUsuario;
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public void setFk_usuario(Long fkUsuario) {
+    this.fkUsuario = fkUsuario;
+  }
 
-    public Long getFkUsuario() {
-        return fkUsuario;
-    }
+  public String getCargo() {
+    return cargo;
+  }
 
-    public void setFk_usuario(Long fkUsuario) {
-        this.fkUsuario = fkUsuario;
-    }
+  public void setCargo(String cargo) {
+    this.cargo = cargo;
+  }
 
-    public String getCargo() {
-        return cargo;
-    }
+  public String getEmpresa() {
+    return empresa;
+  }
 
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
-    }
+  public void setEmpresa(String empresa) {
+    this.empresa = empresa;
+  }
 
-    public String getEmpresa() {
-        return empresa;
-    }
+  public String getDt_inicio() {
+    return dt_inicio;
+  }
 
-    public void setEmpresa(String empresa) {
-        this.empresa = empresa;
-    }
+  public void setDt_inicio(String dt_inicio) {
+    this.dt_inicio = dt_inicio;
+  }
 
-    public String getCidade() {
-        return cidade;
-    }
+  public String getDt_fim() {
+    return dt_fim;
+  }
 
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    public LocalDate getDt_inicio() {
-        return dt_inicio;
-    }
-
-    public void setDt_inicio(LocalDate dt_inicio) {
-        this.dt_inicio = dt_inicio;
-    }
-
-    public LocalDate getDt_fim() {
-        return dt_fim;
-    }
-
-    public void setDt_fim(LocalDate dt_fim) {
-        this.dt_fim = dt_fim;
-    }
+  public void setDt_fim(String dt_fim) {
+    this.dt_fim = dt_fim;
+  }
 }

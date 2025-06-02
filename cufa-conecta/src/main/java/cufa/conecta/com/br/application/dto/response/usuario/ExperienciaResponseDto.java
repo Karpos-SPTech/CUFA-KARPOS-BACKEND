@@ -1,50 +1,39 @@
 package cufa.conecta.com.br.application.dto.response.usuario;
 
-import java.time.LocalDate;
-
 public class ExperienciaResponseDto {
-    private Long id;
-    private String cargo;
-    private String empresa;
-    private String cidade;
-    private String estado;
-    private LocalDate dtInicio;
-    private LocalDate dtFim;
+  private Long id;
+  private String cargo;
+  private String empresa;
+  private String dtInicio;
+  private String dtFim;
 
-    public ExperienciaResponseDto(Long id, String cargo, String empresa, String cidade, String estado, LocalDate dtInicio, LocalDate dtFim) {
-        this.id = id;
-        this.cargo = cargo;
-        this.empresa = empresa;
-        this.cidade = cidade;
-        this.estado = estado;
-        this.dtInicio = dtInicio;
-        this.dtFim = dtFim;
-    }
+  public ExperienciaResponseDto(
+      Long id, String cargo, String empresa, String dtInicio, String dtFim) {
+    this.id = id;
+    this.cargo = cargo;
+    this.empresa = empresa;
+    this.dtInicio = dtInicio;
+    this.dtFim = dtFim;
+  }
 
-    // Getters
-    public Long getId() { return id; }
+  // Getters
+  public Long getId() {
+    return id;
+  }
 
-    public String getCargo() {
-        return cargo;
-    }
+  public String getCargo() {
+    return cargo;
+  }
 
-    public String getEmpresa() {
-        return empresa;
-    }
+  public String getEmpresa() {
+    return empresa;
+  }
 
-    public String getCidade() {
-        return cidade;
-    }
+  public String getDtInicio() {
+    return dtInicio;
+  }
 
-    public String getEstado() {
-        return estado;
-    }
-
-    public LocalDate getDtInicio() {
-        return dtInicio;
-    }
-
-    public LocalDate getDtFim() {
-        return dtFim;
-    }
+  public String getDtFim() {
+    return dtFim;
+  }
 }
