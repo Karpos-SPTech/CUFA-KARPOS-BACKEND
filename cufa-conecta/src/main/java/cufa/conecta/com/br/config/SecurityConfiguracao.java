@@ -1,12 +1,9 @@
 package cufa.conecta.com.br.config;
 
 import cufa.conecta.com.br.resources.AutenticacaoRepository;
-import java.util.Arrays;
 import java.util.List;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -94,21 +91,14 @@ public class SecurityConfiguracao {
   @Bean
   public CorsConfigurationSource corsConfigurationSource() {
     CorsConfiguration configuracao = new CorsConfiguration();
-    configuracao.applyPermitDefaultValues();
-    configuracao.setAllowedMethods(
-        Arrays.asList(
-            HttpMethod.GET.name(),
-            HttpMethod.POST.name(),
-            HttpMethod.PUT.name(),
-            HttpMethod.PATCH.name(),
-            HttpMethod.DELETE.name(),
-            HttpMethod.OPTIONS.name(),
-            HttpMethod.HEAD.name(),
-            HttpMethod.TRACE.name()));
-    configuracao.setExposedHeaders(List.of(HttpHeaders.CONTENT_DISPOSITION));
+    configuracao.setAllowedOrigins(List.of("http://localhost:5173")); // frontend
+    configuracao.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
+    configuracao.setAllowedHeaders(List.of("*"));
+    configuracao.setAllowCredentials(true); // necessário para cookies
+    configuracao.setExposedHeaders(List.of("Authorization", "Content-Disposition"));
+
     UrlBasedCorsConfigurationSource origem = new UrlBasedCorsConfigurationSource();
     origem.registerCorsConfiguration("/**", configuracao);
-
     return origem;
   }
 
