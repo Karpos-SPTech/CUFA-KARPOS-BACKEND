@@ -9,7 +9,6 @@ import cufa.conecta.com.br.resources.empresa.dao.EmpresaDao;
 import cufa.conecta.com.br.resources.empresa.entity.EmpresaEntity;
 import java.time.LocalDate;
 import java.util.List;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,15 +17,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class EmpresaRepository {
   private final GerenciadorTokenJwt gerenciadorTokenJwt;
-  private final AuthenticationManager authenticationManager;
   private final EmpresaDao empresaDao;
 
-  public EmpresaRepository(
-      GerenciadorTokenJwt gerenciadorTokenJwt,
-      AuthenticationManager authenticationManager,
-      EmpresaDao empresaDao) {
+  public EmpresaRepository(GerenciadorTokenJwt gerenciadorTokenJwt, EmpresaDao empresaDao) {
     this.gerenciadorTokenJwt = gerenciadorTokenJwt;
-    this.authenticationManager = authenticationManager;
     this.empresaDao = empresaDao;
   }
 
@@ -110,14 +104,6 @@ public class EmpresaRepository {
     entity.setDtCadastro(LocalDate.now());
 
     return entity;
-  }
-
-  private void authenticateCredentials(String email, String senha) {
-    Authentication credentials = new UsernamePasswordAuthenticationToken(email, senha);
-
-    authenticationManager.authenticate(credentials);
-
-    SecurityContextHolder.getContext().setAuthentication(credentials);
   }
 
   private EmpresaEntity buscarEmpresaPorEmail(String email) {

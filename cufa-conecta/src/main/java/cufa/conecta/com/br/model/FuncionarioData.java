@@ -14,6 +14,8 @@ public class FuncionarioData {
     this.cargo = cargo;
   }
 
+  public FuncionarioData() {}
+
   public String getNome() {
     return nome;
   }

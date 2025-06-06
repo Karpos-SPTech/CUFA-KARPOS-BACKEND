@@ -1,7 +1,9 @@
 package cufa.conecta.com.br.domain.service.empresa;
 
+import cufa.conecta.com.br.application.dto.request.LoginDto;
 import cufa.conecta.com.br.application.dto.request.empresa.FuncionarioRequestDto;
 import cufa.conecta.com.br.application.dto.response.empresa.FuncionarioResponseDto;
+import cufa.conecta.com.br.application.dto.response.empresa.FuncionarioTokenDto;
 import cufa.conecta.com.br.domain.enums.Cargo;
 import cufa.conecta.com.br.model.FuncionarioData;
 import cufa.conecta.com.br.resources.empresa.FuncionarioRepository;
@@ -54,8 +56,16 @@ public class FuncionarioService {
     return new FuncionarioResponseDto(salvo);
   }
 
+  public FuncionarioTokenDto login(LoginDto funcionarioLoginDto) {
+    FuncionarioData funcionarioData = new FuncionarioData();
+
+    funcionarioData.setEmail(funcionarioLoginDto.getEmail());
+    funcionarioData.setSenha(funcionarioLoginDto.getSenha());
+
+    return funcionarioRepository.autenticar(funcionarioData);
+  }
+
   public List<FuncionarioResponseDto> listarPorEmpresa(Long fkEmpresa) {
-    // Verifica se a empresa autenticada tem permissão para acessar esses dados
     String emailEmpresaLogada = SecurityContextHolder.getContext().getAuthentication().getName();
     EmpresaEntity empresaAutenticada =
         empresaDao

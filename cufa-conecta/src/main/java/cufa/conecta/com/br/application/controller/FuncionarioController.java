@@ -1,12 +1,16 @@
 package cufa.conecta.com.br.application.controller;
 
+import cufa.conecta.com.br.application.dto.request.LoginDto;
 import cufa.conecta.com.br.application.dto.request.empresa.FuncionarioRequestDto;
 import cufa.conecta.com.br.application.dto.response.empresa.FuncionarioResponseDto;
+import cufa.conecta.com.br.application.dto.response.empresa.FuncionarioTokenDto;
 import cufa.conecta.com.br.domain.service.empresa.FuncionarioService;
 import cufa.conecta.com.br.model.FuncionarioData;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import java.util.List;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +29,26 @@ public class FuncionarioController {
     FuncionarioResponseDto response = service.criarFuncionario(dto);
 
     return ResponseEntity.status(HttpStatus.CREATED).body(response);
+  }
+
+  @PostMapping("/login")
+  @ResponseStatus(HttpStatus.OK)
+  public ResponseEntity<FuncionarioTokenDto> login(@RequestBody LoginDto funcionarioTokenDto) {
+    FuncionarioTokenDto funcionarioToken = service.login(funcionarioTokenDto);
+
+    ResponseCookie cookie =
+        ResponseCookie.from("jwt", funcionarioToken.getToken())
+            .httpOnly(true)
+            .secure(false)
+            .path("/")
+            .maxAge(3600)
+            .sameSite("Strict")
+            .build();
+
+    return ResponseEntity.ok()
+        .header(HttpHeaders.SET_COOKIE, cookie.toString())
+        .body(
+            new FuncionarioTokenDto(funcionarioToken.getNome(), funcionarioToken.getEmail(), null));
   }
 
   @GetMapping("/{fkEmpresa}")

@@ -37,10 +37,10 @@ public class GerenciadorTokenJwt {
     return generateToken(authentication, null);
   }
 
-  public String generateToken(Authentication authentication, Long idEmpresa) {
+  public String generateToken(Authentication authentication, Long idUsuario) {
     Map<String, Object> claims = new HashMap<>();
-    if (idEmpresa != null) {
-      claims.put("idEmpresa", idEmpresa);
+    if (idUsuario != null) {
+      claims.put("idEmpresa", idUsuario);
     }
 
     return Jwts.builder()
@@ -63,13 +63,6 @@ public class GerenciadorTokenJwt {
 
   public Date getExpirationDateFromToken(String token) {
     return getClaimFromToken(token, Claims::getExpiration);
-  }
-
-  // **Novo método para extrair idEmpresa da claim customizada**
-  public Long getIdEmpresaFromToken(String token) {
-    Claims claims = getAllClaimsFromToken(token);
-    Integer idEmpresa = claims.get("idEmpresa", Integer.class);
-    return idEmpresa != null ? idEmpresa.longValue() : null;
   }
 
   private Claims getAllClaimsFromToken(String token) {
