@@ -62,6 +62,13 @@ public class EmpresaController implements EmpresaControllerDoc {
     return ResponseEntity.status(200).body(empresasEncontradas);
   }
 
+  @GetMapping("/{id}")
+  @SecurityRequirement(name = "Bearer")
+  public ResponseEntity<EmpresaResponseDto> buscarEmpresaPorId(@PathVariable Long id) {
+    EmpresaResponseDto empresa = service.buscarPorId(id);
+    return ResponseEntity.ok(empresa);
+  }
+
   @PutMapping("/{id}")
   public void atualizarEmpresa(@PathVariable Long id, @RequestBody EmpresaRequestDto empresaDto) {
     EmpresaData empresaAtualizada = empresaDto.toModel();

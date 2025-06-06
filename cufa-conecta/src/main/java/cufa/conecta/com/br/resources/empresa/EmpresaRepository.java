@@ -65,6 +65,11 @@ public class EmpresaRepository {
     return empresaDao.findAll();
   }
 
+  public EmpresaEntity buscarPorId(Long id) {
+    return empresaDao.findById(id)
+            .orElseThrow(() -> new EmpresaNotFoundException("Empresa com ID " + id + " não encontrada"));
+  }
+
   public void atualizarDados(EmpresaData empresaAtualizada) {
     EmpresaEntity empresaAtual =
             empresaDao.findById(empresaAtualizada.getId())
