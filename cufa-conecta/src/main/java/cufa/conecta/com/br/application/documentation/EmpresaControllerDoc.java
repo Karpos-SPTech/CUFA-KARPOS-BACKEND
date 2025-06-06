@@ -185,30 +185,4 @@ public interface EmpresaControllerDoc {
             })
       })
   void atualizarEmpresa(@Valid Long id, @Valid EmpresaRequestDto empresaDto);
-
-  @Operation(summary = "Realiza a deleção de uma empresa")
-  @ApiResponses(
-      value = {
-        @ApiResponse(responseCode = "204", description = "A empresa foi deletada com sucesso!"),
-        @ApiResponse(
-            responseCode = "404",
-            description = "A empresa inserida não foi encontrada",
-            content = {
-              @Content(
-                  schema = @Schema(implementation = ApiExceptionDto.class),
-                  mediaType = MediaType.APPLICATION_JSON_VALUE,
-                  examples = {
-                    @ExampleObject(
-                        name = "Erro na busca da empresa",
-                        value =
-                            """
-                                {
-                                "status": "NOT_FOUND",
-                                "message": "A empresa inserida não foi encontrada"
-                                }
-                                """)
-                  })
-            })
-      })
-  void deletarEmpresa(@Valid Long id);
 }

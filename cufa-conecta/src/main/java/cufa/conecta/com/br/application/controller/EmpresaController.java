@@ -5,6 +5,7 @@ import cufa.conecta.com.br.application.dto.request.LoginDto;
 import cufa.conecta.com.br.application.dto.request.empresa.EmpresaRequestDto;
 import cufa.conecta.com.br.application.dto.response.empresa.EmpresaResponseDto;
 import cufa.conecta.com.br.application.dto.response.empresa.EmpresaTokenDto;
+import cufa.conecta.com.br.application.exception.EmpresaNotFoundException;
 import cufa.conecta.com.br.domain.service.empresa.EmpresaService;
 import cufa.conecta.com.br.model.EmpresaData;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -40,15 +41,14 @@ public class EmpresaController implements EmpresaControllerDoc {
     ResponseCookie cookie =
         ResponseCookie.from("jwt", empresaToken.getToken())
             .httpOnly(true)
-            .secure(false)
             .path("/")
             .maxAge(3600)
-            .sameSite("Strict")
+            .sameSite("None").secure(true)
             .build();
 
     return ResponseEntity.ok()
         .header(HttpHeaders.SET_COOKIE, cookie.toString())
-        .body(new EmpresaTokenDto(empresaToken.getNome(), empresaToken.getEmail(), null));
+        .body(new EmpresaTokenDto(empresaToken.getId(), empresaToken.getNome(), empresaToken.getEmail(), null));
   }
 
   @GetMapping
@@ -57,7 +57,7 @@ public class EmpresaController implements EmpresaControllerDoc {
     List<EmpresaResponseDto> empresasEncontradas = service.listarTodos();
 
     if (empresasEncontradas.isEmpty()) {
-      return ResponseEntity.status(204).build();
+      throw new EmpresaNotFoundException("Não há empresas encontradas");
     }
     return ResponseEntity.status(200).body(empresasEncontradas);
   }
@@ -65,13 +65,9 @@ public class EmpresaController implements EmpresaControllerDoc {
   @PutMapping("/{id}")
   public void atualizarEmpresa(@PathVariable Long id, @RequestBody EmpresaRequestDto empresaDto) {
     EmpresaData empresaAtualizada = empresaDto.toModel();
+
     empresaAtualizada.setId(id);
 
     service.atualizarEmpresa(empresaAtualizada);
-  }
-
-  @DeleteMapping("/{id}")
-  public void deletarEmpresa(@PathVariable Long id) {
-    service.deletar(id);
   }
 }

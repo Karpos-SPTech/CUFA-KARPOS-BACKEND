@@ -65,10 +65,6 @@ public class EmpresaService {
   }
 
   public void atualizarEmpresa(EmpresaData empresa) {
-    repository.atualizar(empresa);
-  }
-
-  public void deletar(Long id) {
-    repository.deletar(id);
+    repository.atualizarDados(empresa);
   }
 }
