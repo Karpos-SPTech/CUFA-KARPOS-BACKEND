@@ -4,8 +4,6 @@ import cufa.conecta.com.br.resources.empresa.dao.FuncionarioDao;
 import cufa.conecta.com.br.resources.empresa.entity.FuncionarioEntity;
 import java.util.List;
 import java.util.Optional;
-
-import cufa.conecta.com.br.resources.empresa.entity.PublicacaoEntity;
 import org.springframework.stereotype.Repository;
 
 @Repository

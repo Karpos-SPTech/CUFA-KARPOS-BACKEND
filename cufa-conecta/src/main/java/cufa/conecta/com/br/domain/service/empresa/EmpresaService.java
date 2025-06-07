@@ -1,6 +1,5 @@
 package cufa.conecta.com.br.domain.service.empresa;
 
-import cufa.conecta.com.br.application.controller.EmpresaPatchRequestDto;
 import cufa.conecta.com.br.application.dto.request.LoginDto;
 import cufa.conecta.com.br.application.dto.request.empresa.EmpresaRequestDto;
 import cufa.conecta.com.br.application.dto.response.empresa.EmpresaResponseDto;
