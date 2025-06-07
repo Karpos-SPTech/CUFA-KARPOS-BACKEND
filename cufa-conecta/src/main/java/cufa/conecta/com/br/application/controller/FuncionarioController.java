@@ -30,4 +30,10 @@ public class FuncionarioController {
     List<FuncionarioResponseDto> funcionarios = service.listarPorEmpresa(fkEmpresa);
     return ResponseEntity.ok(funcionarios);
   }
+
+  @DeleteMapping("/{id}")
+  public ResponseEntity<Void> deletar(@PathVariable Long id) {
+    service.deletarFuncionario(id);
+    return ResponseEntity.noContent().build();
+  }
 }

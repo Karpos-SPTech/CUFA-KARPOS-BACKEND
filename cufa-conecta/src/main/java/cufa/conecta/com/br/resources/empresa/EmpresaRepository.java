@@ -8,6 +8,8 @@ import cufa.conecta.com.br.model.EmpresaData;
 import cufa.conecta.com.br.resources.empresa.dao.EmpresaDao;
 import cufa.conecta.com.br.resources.empresa.entity.EmpresaEntity;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -80,6 +82,17 @@ public class EmpresaRepository {
     empresaDao.save(empresaAtual);
   }
 
+  public void atualizarDadosParcial(EmpresaData empresaParcial) {
+    EmpresaEntity empresaAtual =
+            empresaDao.findById(empresaParcial.getId())
+                    .orElseThrow(() -> new EmpresaNotFoundException("Empresa não encontrada"));
+
+    atualizarDadosParcial(empresaParcial, empresaAtual);
+
+    empresaDao.save(empresaAtual);
+  }
+
+
   //     ------------------ Métodos privados --------------
 
   private EmpresaEntity toEntity(EmpresaData empresaData) {
@@ -111,5 +124,20 @@ public class EmpresaRepository {
     empresaAtual.setEndereco(empresaAtualizada.getEndereco());
     empresaAtual.setCnpj(empresaAtualizada.getCnpj());
     empresaAtual.setArea(empresaAtualizada.getArea());
+  }
+
+  private void atualizarDadosParcial(EmpresaData parcial, EmpresaEntity atual) {
+    if (parcial.getNome() != null) {
+      atual.setNome(parcial.getNome());
+    }
+    if (parcial.getCep() != null) {
+      atual.setCep(parcial.getCep());
+    }
+    if (parcial.getEndereco() != null) {
+      atual.setEndereco(parcial.getEndereco());
+    }
+    if (parcial.getNumero() != null) {
+      atual.setNumero(parcial.getNumero());
+    }
   }
 }

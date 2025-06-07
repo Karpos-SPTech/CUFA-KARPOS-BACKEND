@@ -77,4 +77,14 @@ public class EmpresaController implements EmpresaControllerDoc {
 
     service.atualizarEmpresa(empresaAtualizada);
   }
+
+  @PatchMapping("/{id}")
+  @SecurityRequirement(name = "Bearer")
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  public void atualizarParcialmente(@PathVariable Long id, @RequestBody @Valid EmpresaPatchRequestDto empresaDto) {
+    EmpresaData empresaParcial = empresaDto.toModel();
+    empresaParcial.setId(id);
+
+    service.atualizarParcial(empresaParcial);
+  }
 }

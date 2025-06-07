@@ -1,5 +1,6 @@
 package cufa.conecta.com.br.domain.service.empresa;
 
+import cufa.conecta.com.br.application.controller.EmpresaPatchRequestDto;
 import cufa.conecta.com.br.application.dto.request.LoginDto;
 import cufa.conecta.com.br.application.dto.request.empresa.EmpresaRequestDto;
 import cufa.conecta.com.br.application.dto.response.empresa.EmpresaResponseDto;
@@ -81,4 +82,9 @@ public class EmpresaService {
   public void atualizarEmpresa(EmpresaData empresa) {
     repository.atualizarDados(empresa);
   }
+
+  public void atualizarParcial(EmpresaData empresaParcial) {
+    repository.atualizarDadosParcial(empresaParcial);
+  }
+
 }
