@@ -14,6 +14,9 @@ public class PublicacaoEntity {
   @JoinColumn(name = "fkEmpresa")
   private EmpresaEntity empresa;
 
+  @Column(length = 50)
+  private String titulo;
+
   @Column(columnDefinition = "TEXT")
   private String descricao;
 
@@ -38,6 +41,14 @@ public class PublicacaoEntity {
 
   public void setEmpresa(EmpresaEntity empresa) {
     this.empresa = empresa;
+  }
+
+  public String getTitulo() {
+    return titulo;
+  }
+
+  public void setTitulo(String titulo) {
+    this.titulo = titulo;
   }
 
   public String getDescricao() {

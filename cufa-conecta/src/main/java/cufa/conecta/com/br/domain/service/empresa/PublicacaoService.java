@@ -32,6 +32,7 @@ public class PublicacaoService {
 
     PublicacaoEntity publicacao = new PublicacaoEntity();
     publicacao.setEmpresa(empresa);
+    publicacao.setTitulo(dto.titulo);
     publicacao.setDescricao(dto.descricao);
     publicacao.setTipoContrato(dto.tipoContrato);
     publicacao.setDtExpiracao(dto.dtExpiracao);
