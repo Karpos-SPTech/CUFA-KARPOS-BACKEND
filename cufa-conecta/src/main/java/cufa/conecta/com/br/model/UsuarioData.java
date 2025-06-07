@@ -15,6 +15,19 @@ public class UsuarioData {
   String estado;
   String cidade;
   String biografia;
+  String curriculoUrl;
+
+  public UsuarioData(String curriculoUrl) {
+    this.curriculoUrl = curriculoUrl;
+  }
+
+  public String getCurriculoUrl() {
+    return curriculoUrl;
+  }
+
+  public void setCurriculoUrl(String curriculoUrl) {
+    this.curriculoUrl = curriculoUrl;
+  }
 
   public UsuarioData(String nome, String email, String senha) {
     this.nome = nome;

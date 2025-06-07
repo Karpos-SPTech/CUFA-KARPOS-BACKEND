@@ -8,12 +8,13 @@ import cufa.conecta.com.br.config.GerenciadorTokenJwt;
 import cufa.conecta.com.br.model.UsuarioData;
 import cufa.conecta.com.br.resources.user.dao.UsuarioDao;
 import cufa.conecta.com.br.resources.user.entity.UsuarioEntity;
-import java.util.List;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class UsuarioRepository {
@@ -83,7 +84,8 @@ public class UsuarioRepository {
         usuario.getEstado_civil(),
         usuario.getEstado(),
         usuario.getCidade(),
-        usuario.getBiografia());
+        usuario.getBiografia(),
+        usuario.getCurriculoUrl());
   }
 
   public void atualizar(UsuarioData usuario) {

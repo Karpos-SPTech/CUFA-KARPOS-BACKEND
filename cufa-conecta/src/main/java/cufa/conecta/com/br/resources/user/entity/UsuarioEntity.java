@@ -31,6 +31,16 @@ public class UsuarioEntity {
 
   @Column String biografia;
 
+  @Column String curriculoUrl;
+
+  public String getCurriculoUrl() {
+    return curriculoUrl;
+  }
+
+  public void setCurriculoUrl(String curriculoUrl) {
+    this.curriculoUrl = curriculoUrl;
+  }
+
   public Long getId() {
     return id;
   }

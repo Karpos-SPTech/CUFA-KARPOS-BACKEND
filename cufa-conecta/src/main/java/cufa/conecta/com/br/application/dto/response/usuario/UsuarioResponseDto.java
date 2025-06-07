@@ -13,6 +13,15 @@ public class UsuarioResponseDto {
   private String estado;
   private String cidade;
   private String biografia;
+  private String curriculoUrl;
+
+  public String getCurriculoUrl() {
+    return curriculoUrl;
+  }
+
+  public void setCurriculoUrl(String curriculoUrl) {
+    this.curriculoUrl = curriculoUrl;
+  }
 
   public UsuarioResponseDto(
       String nome,
@@ -23,7 +32,8 @@ public class UsuarioResponseDto {
       String estadoCivil,
       String estado,
       String cidade,
-      String biografia) {
+      String biografia,
+      String curriculoUrl) {
     this.nome = nome;
     this.cpf = cpf;
     this.telefone = telefone;
@@ -33,6 +43,7 @@ public class UsuarioResponseDto {
     this.estado = estado;
     this.cidade = cidade;
     this.biografia = biografia;
+    this.curriculoUrl = curriculoUrl;
   }
 
   public String getNome() {

@@ -3,10 +3,7 @@ package cufa.conecta.com.br.application.controller;
 import jakarta.annotation.PostConstruct;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
+import java.nio.file.*;
 import java.util.UUID;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -20,29 +17,31 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/curriculos")
 public class CurriculoController {
 
-  private final Path uploadDir =
-      Paths.get("uploads/curriculos"); // ou configure via `application.properties`
+  private final Path uploadDir = Paths.get("uploads/curriculos");
 
   @PostConstruct
-  public void init() throws IOException {
-    Files.createDirectories(uploadDir);
+  public void init() {
+    try {
+      Files.createDirectories(uploadDir);
+    } catch (IOException e) {
+      throw new RuntimeException("Não foi possível criar o diretório de uploads.", e);
+    }
   }
 
-  @PostMapping("/upload")
-  public ResponseEntity<String> uploadCurriculo(@RequestParam("file") MultipartFile file) {
-    try {
-      if (file.isEmpty()) return ResponseEntity.badRequest().body("Arquivo vazio.");
-
-      String filename = UUID.randomUUID() + "-" + file.getOriginalFilename();
-      Path targetPath = uploadDir.resolve(filename);
-      Files.copy(file.getInputStream(), targetPath, StandardCopyOption.REPLACE_EXISTING);
-
-      // Aqui você pode associar `filename` ao usuário logado no banco de dados
-
-      return ResponseEntity.ok(filename);
-    } catch (IOException e) {
-      return ResponseEntity.status(500).body("Erro ao salvar currículo.");
+  public String salvarArquivoCurriculo(MultipartFile file) throws IOException {
+    if (file.isEmpty()) {
+      throw new IllegalArgumentException("Arquivo vazio.");
     }
+
+    if (!Files.exists(uploadDir)) {
+      Files.createDirectories(uploadDir);
+    }
+
+    String filename = UUID.randomUUID() + "-" + file.getOriginalFilename();
+    Path targetPath = uploadDir.resolve(filename);
+
+    Files.copy(file.getInputStream(), targetPath, StandardCopyOption.REPLACE_EXISTING);
+    return filename;
   }
 
   @GetMapping("/download/{filename:.+}")
@@ -51,19 +50,32 @@ public class CurriculoController {
       Path filePath = uploadDir.resolve(filename).normalize();
       Resource resource = new UrlResource(filePath.toUri());
 
-      if (!resource.exists()) {
+      if (!resource.exists() || !resource.isReadable()) {
         return ResponseEntity.notFound().build();
       }
 
       return ResponseEntity.ok()
-          .contentType(MediaType.APPLICATION_OCTET_STREAM)
-          .header(
-              HttpHeaders.CONTENT_DISPOSITION,
-              "attachment; filename=\"" + resource.getFilename() + "\"")
-          .body(resource);
-
+              .contentType(MediaType.APPLICATION_OCTET_STREAM) // Tipo binário genérico
+              .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
+              .body(resource);
     } catch (MalformedURLException e) {
-      return ResponseEntity.status(500).build();
+      return ResponseEntity.status(500).body(null);
     }
   }
+
+  public ResponseEntity<String> deletarArquivoFisico(String filename) {
+    try {
+      Path filePath = uploadDir.resolve(filename).normalize();
+
+      if (Files.exists(filePath)) {
+        Files.delete(filePath);
+        return ResponseEntity.ok("Arquivo físico deletado com sucesso.");
+      } else {
+        return ResponseEntity.status(404).body("Arquivo físico não encontrado para exclusão.");
+      }
+    } catch (IOException e) {
+      return ResponseEntity.status(500).body("Erro ao excluir currículo físico: " + e.getMessage());
+    }
+  }
+
 }
