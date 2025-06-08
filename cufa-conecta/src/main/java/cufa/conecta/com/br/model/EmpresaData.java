@@ -79,4 +79,24 @@ public class EmpresaData {
   public void setSenha(String senha) {
     this.senha = senha;
   }
+
+  public void setNome(String nome) {
+    this.nome = nome;
+  }
+
+  public void setCep(String cep) {
+    this.cep = cep;
+  }
+
+  public void setNumero(String numero) {
+    this.numero = numero;
+  }
+
+  public void setEndereco(String endereco) {
+    this.endereco = endereco;
+  }
+
+  public void setCnpj(String cnpj) {
+    this.cnpj = cnpj;
+  }
 }

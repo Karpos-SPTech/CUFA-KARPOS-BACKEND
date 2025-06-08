@@ -1,7 +1,6 @@
 package cufa.conecta.com.br.domain.service.empresa;
 
 import cufa.conecta.com.br.application.dto.request.LoginDto;
-import cufa.conecta.com.br.application.dto.request.empresa.BiografiaRequestDto;
 import cufa.conecta.com.br.application.dto.request.empresa.EmpresaRequestDto;
 import cufa.conecta.com.br.application.dto.response.empresa.EmpresaResponseDto;
 import cufa.conecta.com.br.application.dto.response.empresa.EmpresaTokenDto;
@@ -10,7 +9,6 @@ import cufa.conecta.com.br.resources.empresa.EmpresaRepository;
 import cufa.conecta.com.br.resources.empresa.entity.EmpresaEntity;
 import java.util.List;
 import java.util.stream.Collectors;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -66,19 +64,26 @@ public class EmpresaService {
         .collect(Collectors.toList());
   }
 
+  public EmpresaResponseDto buscarPorId(Long id) {
+    EmpresaEntity empresa = repository.buscarPorId(id);
+
+    return new EmpresaResponseDto(
+            empresa.getId(),
+            empresa.getNome(),
+            empresa.getEmail(),
+            empresa.getCep(),
+            empresa.getNumero(),
+            empresa.getEndereco(),
+            empresa.getCnpj(),
+            empresa.getArea());
+  }
+
   public void atualizarEmpresa(EmpresaData empresa) {
-    repository.atualizar(empresa);
+    repository.atualizarDados(empresa);
   }
 
-  public void deletar(Long id) {
-    repository.deletar(id);
+  public void atualizarParcial(EmpresaData empresaParcial) {
+    repository.atualizarDadosParcial(empresaParcial);
   }
 
-  public void atualizarBiografia(BiografiaRequestDto dto) {
-    EmpresaEntity empresa =
-        (EmpresaEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    empresa.setBiografia(dto.getBiografia());
-
-    repository.atualizarBiografia(empresa);
-  }
 }

@@ -1,6 +1,6 @@
 package cufa.conecta.com.br.resources;
 
-import cufa.conecta.com.br.application.exception.NotFoundException;
+import cufa.conecta.com.br.application.exception.UsuarioNotFoundException;
 import cufa.conecta.com.br.resources.empresa.dao.EmpresaDao;
 import cufa.conecta.com.br.resources.empresa.dao.FuncionarioDao;
 import cufa.conecta.com.br.resources.empresa.entity.EmpresaEntity;
@@ -51,6 +51,6 @@ public class AutenticacaoRepository implements UserDetailsService {
       return new User(empresa.getEmail(), empresa.getSenha(), new ArrayList<>());
     }
 
-    throw new NotFoundException("Usuário ou empresa com este e-mail não foi encontrado.");
+    throw new UsuarioNotFoundException("Usuário ou empresa com este e-mail não foi encontrado.");
   }
 }

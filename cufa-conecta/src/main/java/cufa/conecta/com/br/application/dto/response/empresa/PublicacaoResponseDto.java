@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 
 public class PublicacaoResponseDto {
   public Long idPublicacao;
+  public String titulo;
   public String descricao;
   public String tipoContrato;
   public LocalDateTime dtExpiracao;
@@ -13,6 +14,7 @@ public class PublicacaoResponseDto {
 
   public PublicacaoResponseDto(PublicacaoEntity entity) {
     this.idPublicacao = entity.getIdPublicacao();
+    this.titulo = entity.getTitulo();
     this.descricao = entity.getDescricao();
     this.tipoContrato = entity.getTipoContrato();
     this.dtExpiracao = entity.getDtExpiracao();
