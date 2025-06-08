@@ -23,4 +23,5 @@ public class PublicacaoResponseDto {
     this.nomeEmpresa = entity.getEmpresa().getNome();
     this.fkEmpresa = entity.getEmpresa().getId();
   }
+
 }
