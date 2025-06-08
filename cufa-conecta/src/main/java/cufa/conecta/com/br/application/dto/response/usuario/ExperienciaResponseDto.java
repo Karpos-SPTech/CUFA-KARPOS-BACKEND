@@ -16,6 +16,13 @@ public class ExperienciaResponseDto {
     this.dtFim = dtFim;
   }
 
+  public ExperienciaResponseDto(String cargo, String empresa, String dtInicio, String dtFim) {
+    this.cargo = cargo;
+    this.empresa = empresa;
+    this.dtInicio = dtInicio;
+    this.dtFim = dtFim;
+  }
+
   // Getters
   public Long getId() {
     return id;

@@ -6,4 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ExperienciasDao extends JpaRepository<ExperienciasEntity, Long> {
   List<ExperienciasEntity> findByFkUsuario(Long fkUsuario);
+
 }

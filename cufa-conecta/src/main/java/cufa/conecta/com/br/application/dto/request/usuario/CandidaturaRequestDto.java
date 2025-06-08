@@ -7,28 +7,27 @@ public class CandidaturaRequestDto {
   @NotNull Long fkPublicacao;
   @NotNull Long fkEmpresa;
 
-  public CandidaturaRequestDto(Long fkUsuario, Long fkPublicacao, Long fkEmpresa) {
-    this.fkUsuario = fkUsuario;
-    this.fkPublicacao = fkPublicacao;
-    this.fkEmpresa = fkEmpresa;
-  }
-
-  //    public CandidaturaData toModel() {
-  //        if (fkUsuario == null || fkPublicacao == null || fkEmpresa == null) {
-  //            throw new BadRequestException("Campos não podem ser nulos");
-  //        }
-  //        return new CandidaturaData(fkUsuario, fkPublicacao, fkEmpresa);
-  //    }
-
   public Long getFkUsuario() {
     return fkUsuario;
+  }
+
+  public void setFkUsuario(Long fkUsuario) {
+    this.fkUsuario = fkUsuario;
   }
 
   public Long getFkPublicacao() {
     return fkPublicacao;
   }
 
+  public void setFkPublicacao(Long fkPublicacao) {
+    this.fkPublicacao = fkPublicacao;
+  }
+
   public Long getFkEmpresa() {
     return fkEmpresa;
+  }
+
+  public void setFkEmpresa(Long fkEmpresa) {
+    this.fkEmpresa = fkEmpresa;
   }
 }

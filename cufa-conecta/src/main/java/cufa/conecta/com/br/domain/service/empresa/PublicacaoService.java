@@ -38,6 +38,7 @@ public class PublicacaoService {
     publicacao.setDtExpiracao(dto.dtExpiracao);
     publicacao.setDtPublicacao(LocalDateTime.now());
 
+
     PublicacaoEntity salvo = repository.save(publicacao);
 
     return new PublicacaoResponseDto(salvo);
