@@ -65,13 +65,6 @@ public class GerenciadorTokenJwt {
     return getClaimFromToken(token, Claims::getExpiration);
   }
 
-  // **Novo método para extrair idEmpresa da claim customizada**
-  public Long getIdEmpresaFromToken(String token) {
-    Claims claims = getAllClaimsFromToken(token);
-    Integer idEmpresa = claims.get("idEmpresa", Integer.class);
-    return idEmpresa != null ? idEmpresa.longValue() : null;
-  }
-
   private Claims getAllClaimsFromToken(String token) {
     try {
       return Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJws(token).getBody();

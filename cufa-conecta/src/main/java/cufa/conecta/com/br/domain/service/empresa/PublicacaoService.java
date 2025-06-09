@@ -32,6 +32,7 @@ public class PublicacaoService {
 
     PublicacaoEntity publicacao = new PublicacaoEntity();
     publicacao.setEmpresa(empresa);
+    publicacao.setTitulo(dto.titulo);
     publicacao.setDescricao(dto.descricao);
     publicacao.setTipoContrato(dto.tipoContrato);
     publicacao.setDtExpiracao(dto.dtExpiracao);
@@ -61,11 +62,11 @@ public class PublicacaoService {
   }
 
   public PublicacaoResponseDto editarPublicacao(Long id, PublicacaoRequestDto dto) {
-    String emailEmpresaLogada = SecurityContextHolder.getContext().getAuthentication().getName();
-    EmpresaEntity empresa =
-        empresaDao
-            .findByEmail(emailEmpresaLogada)
-            .orElseThrow(() -> new RuntimeException("Empresa não encontrada"));
+//    String emailEmpresaLogada = SecurityContextHolder.getContext().getAuthentication().getName();
+//    EmpresaEntity empresa =
+//        empresaDao
+//            .findByEmail(emailEmpresaLogada)
+//            .orElseThrow(() -> new RuntimeException("Empresa não encontrada"));
 
     PublicacaoEntity publicacao =
         repository
@@ -81,11 +82,11 @@ public class PublicacaoService {
   }
 
   public void deletarPublicacao(Long id) {
-    String emailEmpresaLogada = SecurityContextHolder.getContext().getAuthentication().getName();
-    EmpresaEntity empresa =
-        empresaDao
-            .findByEmail(emailEmpresaLogada)
-            .orElseThrow(() -> new RuntimeException("Empresa não encontrada"));
+//    String emailEmpresaLogada = SecurityContextHolder.getContext().getAuthentication().getName();
+//    EmpresaEntity empresa =
+//        empresaDao
+//            .findByEmail(emailEmpresaLogada)
+//            .orElseThrow(() -> new RuntimeException("Empresa não encontrada"));
 
     PublicacaoEntity publicacao =
         repository

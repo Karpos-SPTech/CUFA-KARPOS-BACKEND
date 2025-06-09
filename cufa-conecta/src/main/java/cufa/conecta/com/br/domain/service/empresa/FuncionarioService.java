@@ -68,4 +68,13 @@ public class FuncionarioService {
     List<FuncionarioEntity> funcionarios = funcionarioRepository.findByEmpresaId(fkEmpresa);
     return funcionarios.stream().map(FuncionarioResponseDto::new).collect(Collectors.toList());
   }
+
+  public void deletarFuncionario(Long id) {
+    FuncionarioEntity funcionario =
+            funcionarioRepository
+                    .findById(id)
+                    .orElseThrow(() -> new RuntimeException("Publicação não encontrada"));
+
+    funcionarioRepository.delete(funcionario);
+  }
 }

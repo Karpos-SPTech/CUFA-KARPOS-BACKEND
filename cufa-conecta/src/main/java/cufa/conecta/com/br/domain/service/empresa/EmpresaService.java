@@ -66,12 +66,26 @@ public class EmpresaService {
         .collect(Collectors.toList());
   }
 
-  public void atualizarEmpresa(EmpresaData empresa) {
-    repository.atualizar(empresa);
+  public EmpresaResponseDto buscarPorId(Long id) {
+    EmpresaEntity empresa = repository.buscarPorId(id);
+
+    return new EmpresaResponseDto(
+            empresa.getId(),
+            empresa.getNome(),
+            empresa.getEmail(),
+            empresa.getCep(),
+            empresa.getNumero(),
+            empresa.getEndereco(),
+            empresa.getCnpj(),
+            empresa.getArea());
   }
 
-  public void deletar(Long id) {
-    repository.deletar(id);
+  public void atualizarEmpresa(EmpresaData empresa) {
+    repository.atualizarDados(empresa);
+  }
+
+  public void atualizarParcial(EmpresaData empresaParcial) {
+    repository.atualizarDadosParcial(empresaParcial);
   }
 
   public void atualizarBiografia(BiografiaRequestDto dto) {
