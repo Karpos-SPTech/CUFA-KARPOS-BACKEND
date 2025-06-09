@@ -1,17 +1,20 @@
 package cufa.conecta.com.br.resources.user;
 
+import cufa.conecta.com.br.application.dto.response.usuario.UsuarioResponseDto;
 import cufa.conecta.com.br.application.dto.response.usuario.UsuarioTokenDto;
-import cufa.conecta.com.br.application.exception.*;
+import cufa.conecta.com.br.application.exception.UsuarioBadRequest;
+import cufa.conecta.com.br.application.exception.UsuarioNotFoundException;
 import cufa.conecta.com.br.config.GerenciadorTokenJwt;
 import cufa.conecta.com.br.model.UsuarioData;
 import cufa.conecta.com.br.resources.user.dao.UsuarioDao;
 import cufa.conecta.com.br.resources.user.entity.UsuarioEntity;
-import java.util.List;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class UsuarioRepository {
@@ -54,11 +57,35 @@ public class UsuarioRepository {
         gerenciadorTokenJwt.generateToken(
             new UsernamePasswordAuthenticationToken(usuario.getEmail(), usuario.getSenha()));
 
-    return new UsuarioTokenDto(usuarioAutenticado.getNome(), usuarioAutenticado.getEmail(), token);
+    return new UsuarioTokenDto(
+        usuarioAutenticado.getId(),
+        usuarioAutenticado.getNome(),
+        usuarioAutenticado.getEmail(),
+        token);
   }
 
   public List<UsuarioEntity> listarTodos() {
     return usuarioDao.findAll();
+  }
+
+  public UsuarioResponseDto mostrarDados(Long id) {
+    UsuarioEntity usuario =
+        usuarioDao
+            .findById(id)
+            .orElseThrow(
+                () -> new UsuarioNotFoundException("Usuário com id " + id + " não encontrado"));
+
+    return new UsuarioResponseDto(
+        usuario.getNome(),
+        usuario.getCpf(),
+        usuario.getTelefone(),
+        usuario.getEscolaridade(),
+        usuario.getDt_nascimento(),
+        usuario.getEstado_civil(),
+        usuario.getEstado(),
+        usuario.getCidade(),
+        usuario.getBiografia(),
+        usuario.getCurriculoUrl());
   }
 
   public void atualizar(UsuarioData usuario) {
@@ -68,8 +95,14 @@ public class UsuarioRepository {
             .orElseThrow(() -> new UsuarioNotFoundException("Usuário não encontrado"));
 
     usuarioExistente.setNome(usuario.getNome());
-    usuarioExistente.setEmail(usuario.getEmail());
-    usuarioExistente.setSenha(usuario.getSenha());
+    usuarioExistente.setCpf(usuario.getCpf());
+    usuarioExistente.setTelefone(usuario.getTelefone());
+    usuarioExistente.setEscolaridade(usuario.getEscolaridade());
+    usuarioExistente.setDt_nascimento(usuario.getDtNascimento());
+    usuarioExistente.setEstado_civil(usuario.getEstado_civil());
+    usuarioExistente.setEstado(usuario.getEstado());
+    usuarioExistente.setCidade(usuario.getCidade());
+    usuarioExistente.setBiografia(usuario.getBiografia());
 
     usuarioDao.save(usuarioExistente);
   }
@@ -90,6 +123,14 @@ public class UsuarioRepository {
     entity.setNome(usuarioData.getNome());
     entity.setEmail(usuarioData.getEmail());
     entity.setSenha(usuarioData.getSenha());
+    entity.setCpf(usuarioData.getCpf());
+    entity.setTelefone(usuarioData.getTelefone());
+    entity.setEscolaridade(usuarioData.getEscolaridade());
+    entity.setDt_nascimento(usuarioData.getDtNascimento());
+    entity.setEstado_civil(usuarioData.getEstado_civil());
+    entity.setEstado(usuarioData.getEstado());
+    entity.setCidade(usuarioData.getCidade());
+    entity.setBiografia(usuarioData.getBiografia());
 
     return entity;
   }

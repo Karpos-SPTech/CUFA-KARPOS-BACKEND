@@ -18,8 +18,9 @@ public class UsuarioRequestDto {
 
   public UsuarioData toModel() {
     if (nome == null || email == null || senha == null) {
-      throw new BadRequestException("Nome, email, ou senha não podem ser nulos");
+      throw new BadRequestException("Todos os campos devem ser preenchidos");
     }
+
     return new UsuarioData(nome, email, senha);
   }
 

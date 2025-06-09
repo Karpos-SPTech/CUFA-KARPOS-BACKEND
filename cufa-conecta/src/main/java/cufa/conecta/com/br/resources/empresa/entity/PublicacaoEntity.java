@@ -2,6 +2,7 @@ package cufa.conecta.com.br.resources.empresa.entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity(name = "publicacao")
 public class PublicacaoEntity {
@@ -82,4 +83,20 @@ public class PublicacaoEntity {
   public void setDtPublicacao(LocalDateTime dtPublicacao) {
     this.dtPublicacao = dtPublicacao;
   }
+
+  // --- IMPLEMENTAÇÃO MANUAL DE equals() e hashCode() ---
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    PublicacaoEntity that = (PublicacaoEntity) o;
+   return Objects.equals(idPublicacao, that.idPublicacao);
+  }
+
+  @Override
+  public int hashCode() {
+    // O hashCode também é baseado no idPublicacao.
+    return Objects.hash(idPublicacao);
+  }
+
 }

@@ -11,6 +11,7 @@ public class PublicacaoResponseDto {
   public LocalDateTime dtExpiracao;
   public LocalDateTime dtPublicacao;
   public String nomeEmpresa;
+  public Long fkEmpresa;
 
   public PublicacaoResponseDto(PublicacaoEntity entity) {
     this.idPublicacao = entity.getIdPublicacao();
@@ -20,5 +21,7 @@ public class PublicacaoResponseDto {
     this.dtExpiracao = entity.getDtExpiracao();
     this.dtPublicacao = entity.getDtPublicacao();
     this.nomeEmpresa = entity.getEmpresa().getNome();
+    this.fkEmpresa = entity.getEmpresa().getId();
   }
+
 }
