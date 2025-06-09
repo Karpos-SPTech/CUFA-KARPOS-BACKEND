@@ -1,5 +1,6 @@
-package cufa.conecta.com.br.application.controller;
+package cufa.conecta.com.br.application.controller.empresas;
 
+import cufa.conecta.com.br.application.dto.request.empresa.EmpresaPatchRequestDto;
 import cufa.conecta.com.br.application.documentation.EmpresaControllerDoc;
 import cufa.conecta.com.br.application.dto.request.LoginDto;
 import cufa.conecta.com.br.application.dto.request.empresa.BiografiaRequestDto;
@@ -23,9 +24,7 @@ import org.springframework.web.bind.annotation.*;
 public class EmpresaController implements EmpresaControllerDoc {
   private final EmpresaService service;
 
-  public EmpresaController(EmpresaService service) {
-    this.service = service;
-  }
+  public EmpresaController(EmpresaService service) { this.service = service; }
 
   @PostMapping
   @SecurityRequirement(name = "Bearer")
@@ -49,7 +48,11 @@ public class EmpresaController implements EmpresaControllerDoc {
 
     return ResponseEntity.ok()
         .header(HttpHeaders.SET_COOKIE, cookie.toString())
-        .body(new EmpresaTokenDto(empresaToken.getId(), empresaToken.getNome(), empresaToken.getEmail(), null));
+          .body(new EmpresaTokenDto(
+                empresaToken.getId(),
+                empresaToken.getNome(),
+                empresaToken.getEmail(),
+                null));
   }
 
   @GetMapping
@@ -57,9 +60,8 @@ public class EmpresaController implements EmpresaControllerDoc {
   public ResponseEntity<List<EmpresaResponseDto>> listarEmpresas() {
     List<EmpresaResponseDto> empresasEncontradas = service.listarTodos();
 
-    if (empresasEncontradas.isEmpty()) {
-      throw new EmpresaNotFoundException("Não há empresas encontradas");
-    }
+    if (empresasEncontradas.isEmpty()) { throw new EmpresaNotFoundException("Não há empresas encontradas"); }
+
     return ResponseEntity.status(200).body(empresasEncontradas);
   }
 
@@ -67,13 +69,14 @@ public class EmpresaController implements EmpresaControllerDoc {
   @SecurityRequirement(name = "Bearer")
   public ResponseEntity<EmpresaResponseDto> buscarEmpresaPorId(@PathVariable Long id) {
     EmpresaResponseDto empresa = service.buscarPorId(id);
+
     return ResponseEntity.ok(empresa);
   }
 
   @PutMapping("/{id}")
   @SecurityRequirement(name = "Bearer")
   @ResponseStatus(HttpStatus.OK)
-  public void atualizarEmpresa(@PathVariable Long id, @RequestBody EmpresaRequestDto empresaDto) {
+  public void atualizarEmpresa(@PathVariable Long id, @RequestBody @Valid EmpresaRequestDto empresaDto) {
     EmpresaData empresaAtualizada = empresaDto.toModel();
 
     empresaAtualizada.setId(id);

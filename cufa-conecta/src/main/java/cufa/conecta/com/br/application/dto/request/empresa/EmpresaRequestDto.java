@@ -78,16 +78,8 @@ public class EmpresaRequestDto {
     return email;
   }
 
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
   public String getSenha() {
     return senha;
-  }
-
-  public void setSenha(String senha) {
-    this.senha = senha;
   }
 
   public String getCep() {
@@ -98,9 +90,7 @@ public class EmpresaRequestDto {
     return numero;
   }
 
-  public String getEndereco() {
-    return endereco;
-  }
+  public String getEndereco() { return endereco; }
 
   public String getCnpj() {
     return cnpj;

@@ -1,4 +1,4 @@
-package cufa.conecta.com.br.application.controller;
+package cufa.conecta.com.br.application.controller.usuarios;
 
 import cufa.conecta.com.br.application.dto.request.usuario.CandidaturaRequestDto;
 import cufa.conecta.com.br.application.dto.response.empresa.PublicacaoResponseDto;
@@ -23,7 +23,7 @@ public class CandidaturaController {
       @PostMapping
       @SecurityRequirement(name = "Bearer")
       @ResponseStatus(HttpStatus.CREATED)
-      public void criarCandidatura(@RequestBody CandidaturaRequestDto candidaturaDto){
+      public void criarCandidatura(@RequestBody CandidaturaRequestDto candidaturaDto) {
           service.criarCandidatura(candidaturaDto);
       }
 
@@ -35,18 +35,17 @@ public class CandidaturaController {
 
     @GetMapping("/verificar/{userId}/{vagaId}")
     @SecurityRequirement(name = "Bearer")
-    public ResponseEntity<Boolean> verificarCandidaturaExistente(
-            @PathVariable Long userId,
-            @PathVariable Long vagaId) {
+    public ResponseEntity<Boolean> verificarCandidaturaExistente(@PathVariable Long userId, @PathVariable Long vagaId) {
         boolean existe = service.verificarCandidaturaExistente(userId, vagaId);
+
         return ResponseEntity.ok(existe);
     }
 
     @GetMapping("/usuario/{userId}")
     @SecurityRequirement(name = "Bearer")
-    public ResponseEntity<List<PublicacaoResponseDto>> verCandidaturasPorUsuario(
-            @PathVariable Long userId) {
+    public ResponseEntity<List<PublicacaoResponseDto>> verCandidaturasPorUsuario(@PathVariable Long userId) {
         List<PublicacaoResponseDto> vagasCandidatadas = service.listarPublicacoesCandidatadasPorUsuario(userId);
+
         return ResponseEntity.ok(vagasCandidatadas);
     }
 }

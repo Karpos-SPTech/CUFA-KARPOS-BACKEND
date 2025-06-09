@@ -9,29 +9,41 @@ public class UsuarioEntity {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   Long id;
 
-  @Column String nome;
+  @Column
+  String nome;
 
-  @Column String email;
+  @Column
+  String email;
 
-  @Column String senha;
+  @Column
+  String senha;
 
-  @Column String cpf;
+  @Column
+  String cpf;
 
-  @Column String telefone;
+  @Column
+  String telefone;
 
-  @Column String escolaridade;
+  @Column
+  String escolaridade;
 
-  @Column LocalDate dt_nascimento;
+  @Column
+  LocalDate dt_nascimento;
 
-  @Column String estado_civil;
+  @Column
+  String estado_civil;
 
-  @Column String estado;
+  @Column
+  String estado;
 
-  @Column String cidade;
+  @Column
+  String cidade;
 
-  @Column String biografia;
+  @Column
+  String biografia;
 
-  @Column String curriculoUrl;
+  @Column
+  String curriculoUrl;
 
   public String getCurriculoUrl() {
     return curriculoUrl;

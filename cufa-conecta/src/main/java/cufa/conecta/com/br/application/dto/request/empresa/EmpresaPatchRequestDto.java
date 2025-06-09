@@ -1,4 +1,4 @@
-package cufa.conecta.com.br.application.controller;
+package cufa.conecta.com.br.application.dto.request.empresa;
 
 import cufa.conecta.com.br.model.EmpresaData;
 import jakarta.validation.constraints.Size;
@@ -23,33 +23,24 @@ public class EmpresaPatchRequestDto {
         return data;
     }
 
-    // Getters e Setters
-    public String getNome() {
-        return nome;
-    }
+    public String getNome() { return nome; }
+
+    public String getCep() { return cep; }
+
+    public String getEndereco() { return endereco; }
+
+    public String getNumero() { return numero; }
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getCep() {
-        return cep;
     }
 
     public void setCep(String cep) {
         this.cep = cep;
     }
 
-    public String getEndereco() {
-        return endereco;
-    }
-
     public void setEndereco(String endereco) {
         this.endereco = endereco;
-    }
-
-    public String getNumero() {
-        return numero;
     }
 
     public void setNumero(String numero) {

@@ -20,7 +20,6 @@ public class UsuarioRequestDto {
     if (nome == null || email == null || senha == null) {
       throw new BadRequestException("Todos os campos devem ser preenchidos");
     }
-
     return new UsuarioData(nome, email, senha);
   }
 

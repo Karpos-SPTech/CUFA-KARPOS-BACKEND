@@ -1,4 +1,4 @@
-package cufa.conecta.com.br.application.controller;
+package cufa.conecta.com.br.application.controller.usuarios;
 
 import jakarta.annotation.PostConstruct;
 import java.io.IOException;
@@ -23,19 +23,15 @@ public class CurriculoController {
   public void init() {
     try {
       Files.createDirectories(uploadDir);
-    } catch (IOException e) {
-      throw new RuntimeException("Não foi possível criar o diretório de uploads.", e);
+    } catch (IOException erro) {
+      throw new RuntimeException("Não foi possível criar o diretório de uploads.", erro);
     }
   }
 
   public String salvarArquivoCurriculo(MultipartFile file) throws IOException {
-    if (file.isEmpty()) {
-      throw new IllegalArgumentException("Arquivo vazio.");
-    }
+    if (file.isEmpty()) { throw new IllegalArgumentException("Arquivo vazio."); }
 
-    if (!Files.exists(uploadDir)) {
-      Files.createDirectories(uploadDir);
-    }
+    if (!Files.exists(uploadDir)) { Files.createDirectories(uploadDir); }
 
     String filename = UUID.randomUUID() + "-" + file.getOriginalFilename();
     Path targetPath = uploadDir.resolve(filename);
@@ -50,32 +46,28 @@ public class CurriculoController {
       Path filePath = uploadDir.resolve(filename).normalize();
       Resource resource = new UrlResource(filePath.toUri());
 
-      if (!resource.exists() || !resource.isReadable()) {
-        return ResponseEntity.notFound().build();
-      }
+      if (!resource.exists() || !resource.isReadable()) { return ResponseEntity.notFound().build(); }
 
       return ResponseEntity.ok()
-              .contentType(MediaType.APPLICATION_OCTET_STREAM) // Tipo binário genérico
-              .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
+              .contentType(MediaType.APPLICATION_OCTET_STREAM)
+              .header(HttpHeaders.CONTENT_DISPOSITION,
+                      "attachment; filename=\"" + resource.getFilename() + "\"")
               .body(resource);
-    } catch (MalformedURLException e) {
-      return ResponseEntity.status(500).body(null);
-    }
+    } catch (MalformedURLException e) { return ResponseEntity.status(500).body(null); }
   }
 
-  public ResponseEntity<String> deletarArquivoFisico(String filename) {
+  public void deletarArquivoFisico(String filename) {
     try {
       Path filePath = uploadDir.resolve(filename).normalize();
 
       if (Files.exists(filePath)) {
         Files.delete(filePath);
-        return ResponseEntity.ok("Arquivo físico deletado com sucesso.");
+        ResponseEntity.ok("Arquivo físico deletado com sucesso.");
       } else {
-        return ResponseEntity.status(404).body("Arquivo físico não encontrado para exclusão.");
+        ResponseEntity.status(404).body("Arquivo físico não encontrado para exclusão.");
       }
     } catch (IOException e) {
-      return ResponseEntity.status(500).body("Erro ao excluir currículo físico: " + e.getMessage());
+      ResponseEntity.status(500).body("Erro ao excluir currículo físico: " + e.getMessage());
     }
   }
-
 }

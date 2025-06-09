@@ -1,4 +1,4 @@
-package cufa.conecta.com.br.application.controller;
+package cufa.conecta.com.br.application.controller.usuarios;
 
 import cufa.conecta.com.br.application.dto.request.usuario.ExperienciaRequestDto;
 import cufa.conecta.com.br.application.dto.response.usuario.ExperienciaResponseDto;
@@ -42,22 +42,22 @@ public class ExperienciaController {
 
   @GetMapping("/{id}")
   @SecurityRequirement(name = "Bearer")
-  public ResponseEntity<List<ExperienciaResponseDto>> listarExperienciasPorUsuario(
-      @PathVariable Long id) {
+  public ResponseEntity<List<ExperienciaResponseDto>> listarExperienciasPorUsuario(@PathVariable Long id) {
     List<ExperienciaResponseDto> experienciasEncontradas = experienciaService.listarPorUsuario(id);
-    if (experienciasEncontradas.isEmpty()) {
-      return ResponseEntity.status(204).build();
-    }
+
+    if (experienciasEncontradas.isEmpty()) { return ResponseEntity.status(204).build(); }
+
     return ResponseEntity.status(200).body(experienciasEncontradas);
   }
 
   @PutMapping("/{id}")
   @SecurityRequirement(name = "Bearer")
   @ResponseStatus(HttpStatus.OK)
-  public void atualizarExperiencia(
-      @PathVariable Long id, @RequestBody ExperienciaRequestDto experienciaDto) {
+  public void atualizarExperiencia(@PathVariable Long id, @RequestBody ExperienciaRequestDto experienciaDto) {
     ExperienciaData experienciaParaAtualizar = experienciaDto.toModel();
+
     experienciaParaAtualizar.setId(id);
+
     experienciaService.atualizarExperiencia(experienciaParaAtualizar);
   }
 

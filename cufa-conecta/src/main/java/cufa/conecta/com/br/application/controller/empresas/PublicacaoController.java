@@ -1,4 +1,4 @@
-package cufa.conecta.com.br.application.controller;
+package cufa.conecta.com.br.application.controller.empresas;
 
 import cufa.conecta.com.br.application.dto.request.empresa.PublicacaoRequestDto;
 import cufa.conecta.com.br.application.dto.response.empresa.PublicacaoResponseDto;
@@ -22,12 +22,14 @@ public class PublicacaoController {
   @PostMapping
   public ResponseEntity<PublicacaoResponseDto> criar(@RequestBody PublicacaoRequestDto dto) {
     PublicacaoResponseDto response = service.criarPublicacao(dto);
+
     return ResponseEntity.status(HttpStatus.CREATED).body(response);
   }
 
   @GetMapping("/all")
   public ResponseEntity<List<PublicacaoResponseDto>> listarTodasPublicacoes() {
     List<PublicacaoResponseDto> lista = service.listarTodasPublicacoes();
+
     return ResponseEntity.ok(lista);
   }
 
@@ -35,19 +37,21 @@ public class PublicacaoController {
   @SecurityRequirement(name = "Bearer")
   public ResponseEntity<List<PublicacaoResponseDto>> listarPorEmpresa() {
     List<PublicacaoResponseDto> lista = service.listarPublicacoesDaEmpresa();
+
     return ResponseEntity.ok(lista);
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<PublicacaoResponseDto> editar(
-      @PathVariable Long id, @RequestBody PublicacaoRequestDto dto) {
+  public ResponseEntity<PublicacaoResponseDto> editar(@PathVariable Long id, @RequestBody PublicacaoRequestDto dto) {
     PublicacaoResponseDto response = service.editarPublicacao(id, dto);
+
     return ResponseEntity.ok(response);
   }
 
   @DeleteMapping("/{id}")
   public ResponseEntity<Void> deletar(@PathVariable Long id) {
     service.deletarPublicacao(id);
+
     return ResponseEntity.noContent().build();
   }
 }

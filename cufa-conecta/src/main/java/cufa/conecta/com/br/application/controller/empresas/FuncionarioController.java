@@ -1,9 +1,11 @@
-package cufa.conecta.com.br.application.controller;
+package cufa.conecta.com.br.application.controller.empresas;
 
 import cufa.conecta.com.br.application.dto.request.empresa.FuncionarioRequestDto;
 import cufa.conecta.com.br.application.dto.response.empresa.FuncionarioResponseDto;
 import cufa.conecta.com.br.domain.service.empresa.FuncionarioService;
 import java.util.List;
+
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +21,9 @@ public class FuncionarioController {
   }
 
   @PostMapping
-  public ResponseEntity<FuncionarioResponseDto> criar(@RequestBody FuncionarioRequestDto dto) {
+  public ResponseEntity<FuncionarioResponseDto> criar(@RequestBody @Valid FuncionarioRequestDto dto) {
     FuncionarioResponseDto response = service.criarFuncionario(dto);
+
     return ResponseEntity.status(HttpStatus.CREATED).body(response);
   }
 
