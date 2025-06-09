@@ -9,16 +9,9 @@ public class EmpresaResponseDto {
   String endereco;
   String cnpj;
   String area;
+  String biografia;
 
-  public EmpresaResponseDto(
-      Long id,
-      String nome,
-      String email,
-      String cep,
-      String numero,
-      String endereco,
-      String cnpj,
-      String area) {
+  public EmpresaResponseDto(Long id, String nome, String email, String cep, String numero, String endereco, String cnpj, String area, String biografia) {
     this.id = id;
     this.nome = nome;
     this.email = email;
@@ -27,6 +20,15 @@ public class EmpresaResponseDto {
     this.endereco = endereco;
     this.cnpj = cnpj;
     this.area = area;
+    this.biografia = biografia;
+  }
+
+  public String getBiografia() {
+    return biografia;
+  }
+
+  public void setBiografia(String biografia) {
+    this.biografia = biografia;
   }
 
   public Long getId() {

@@ -10,17 +10,27 @@ public class CandidatoDto {
     public String biografia;
     public String email;
     public String telefone;
+    public String escolaridade;
     public String curriculoUrl;
     public List<ExperienciaResponseDto> experiencias;
 
-    public CandidatoDto(String nome, int idade, String biografia, String email, String telefone, String curriculoUrl, List<ExperienciaResponseDto> experiencias) {
+    public CandidatoDto(String nome, int idade, String biografia, String email, String telefone, String escolaridade, String curriculoUrl, List<ExperienciaResponseDto> experiencias) {
         this.nome = nome;
         this.idade = idade;
         this.biografia = biografia;
         this.email = email;
         this.telefone = telefone;
+        this.escolaridade = escolaridade;
         this.curriculoUrl = curriculoUrl;
         this.experiencias = experiencias;
+    }
+
+    public String getEscolaridade() {
+        return escolaridade;
+    }
+
+    public void setEscolaridade(String escolaridade) {
+        this.escolaridade = escolaridade;
     }
 
     public String getNome() {

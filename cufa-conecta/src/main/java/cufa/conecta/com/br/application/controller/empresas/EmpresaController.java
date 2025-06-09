@@ -1,9 +1,9 @@
 package cufa.conecta.com.br.application.controller.empresas;
 
-import cufa.conecta.com.br.application.dto.request.empresa.EmpresaPatchRequestDto;
 import cufa.conecta.com.br.application.documentation.EmpresaControllerDoc;
 import cufa.conecta.com.br.application.dto.request.LoginDto;
 import cufa.conecta.com.br.application.dto.request.empresa.BiografiaRequestDto;
+import cufa.conecta.com.br.application.dto.request.empresa.EmpresaPatchRequestDto;
 import cufa.conecta.com.br.application.dto.request.empresa.EmpresaRequestDto;
 import cufa.conecta.com.br.application.dto.response.empresa.EmpresaResponseDto;
 import cufa.conecta.com.br.application.dto.response.empresa.EmpresaTokenDto;
@@ -24,7 +24,9 @@ import org.springframework.web.bind.annotation.*;
 public class EmpresaController implements EmpresaControllerDoc {
   private final EmpresaService service;
 
-  public EmpresaController(EmpresaService service) { this.service = service; }
+  public EmpresaController(EmpresaService service) {
+    this.service = service;
+  }
 
   @PostMapping
   @SecurityRequirement(name = "Bearer")
@@ -39,20 +41,16 @@ public class EmpresaController implements EmpresaControllerDoc {
     EmpresaTokenDto empresaToken = service.login(empresaLoginDto);
 
     ResponseCookie cookie =
-        ResponseCookie.from("jwt", empresaToken.getToken())
-            .httpOnly(true)
-            .path("/")
-            .maxAge(3600)
-            .sameSite("None").secure(true)
-            .build();
+            ResponseCookie.from("jwt", empresaToken.getToken())
+                    .httpOnly(true)
+                    .path("/")
+                    .maxAge(3600)
+                    .sameSite("None").secure(true)
+                    .build();
 
     return ResponseEntity.ok()
-        .header(HttpHeaders.SET_COOKIE, cookie.toString())
-          .body(new EmpresaTokenDto(
-                empresaToken.getId(),
-                empresaToken.getNome(),
-                empresaToken.getEmail(),
-                null));
+            .header(HttpHeaders.SET_COOKIE, cookie.toString())
+            .body(new EmpresaTokenDto(empresaToken.getId(), empresaToken.getNome(), empresaToken.getEmail(), null));
   }
 
   @GetMapping
@@ -60,8 +58,9 @@ public class EmpresaController implements EmpresaControllerDoc {
   public ResponseEntity<List<EmpresaResponseDto>> listarEmpresas() {
     List<EmpresaResponseDto> empresasEncontradas = service.listarTodos();
 
-    if (empresasEncontradas.isEmpty()) { throw new EmpresaNotFoundException("Não há empresas encontradas"); }
-
+    if (empresasEncontradas.isEmpty()) {
+      throw new EmpresaNotFoundException("Não há empresas encontradas");
+    }
     return ResponseEntity.status(200).body(empresasEncontradas);
   }
 
@@ -69,14 +68,11 @@ public class EmpresaController implements EmpresaControllerDoc {
   @SecurityRequirement(name = "Bearer")
   public ResponseEntity<EmpresaResponseDto> buscarEmpresaPorId(@PathVariable Long id) {
     EmpresaResponseDto empresa = service.buscarPorId(id);
-
     return ResponseEntity.ok(empresa);
   }
 
   @PutMapping("/{id}")
-  @SecurityRequirement(name = "Bearer")
-  @ResponseStatus(HttpStatus.OK)
-  public void atualizarEmpresa(@PathVariable Long id, @RequestBody @Valid EmpresaRequestDto empresaDto) {
+  public void atualizarEmpresa(@PathVariable Long id, @RequestBody EmpresaRequestDto empresaDto) {
     EmpresaData empresaAtualizada = empresaDto.toModel();
 
     empresaAtualizada.setId(id);

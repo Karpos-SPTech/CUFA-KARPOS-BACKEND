@@ -10,6 +10,8 @@ import cufa.conecta.com.br.resources.empresa.EmpresaRepository;
 import cufa.conecta.com.br.resources.empresa.entity.EmpresaEntity;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -62,7 +64,8 @@ public class EmpresaService {
                     empresa.getNumero(),
                     empresa.getEndereco(),
                     empresa.getCnpj(),
-                    empresa.getArea()))
+                    empresa.getArea(),
+                    empresa.getBiografia()))
         .collect(Collectors.toList());
   }
 
@@ -77,7 +80,8 @@ public class EmpresaService {
             empresa.getNumero(),
             empresa.getEndereco(),
             empresa.getCnpj(),
-            empresa.getArea());
+            empresa.getArea(),
+            empresa.getBiografia());
   }
 
   public void atualizarEmpresa(EmpresaData empresa) {
@@ -89,10 +93,13 @@ public class EmpresaService {
   }
 
   public void atualizarBiografia(BiografiaRequestDto dto) {
-    EmpresaEntity empresa =
-        (EmpresaEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    empresa.setBiografia(dto.getBiografia());
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    String email = auth.getName();
 
+    EmpresaEntity empresa = repository.findByEmail(email)
+            .orElseThrow(() -> new RuntimeException("Empresa não encontrada"));
+
+    empresa.setBiografia(dto.getBiografia());
     repository.atualizarBiografia(empresa);
   }
 }

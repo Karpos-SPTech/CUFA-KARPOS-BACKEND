@@ -98,6 +98,7 @@ public class CandidaturaService {
                     usuario.getBiografia(),
                     usuario.getEmail(),
                     usuario.getTelefone(),
+                    usuario.getEscolaridade(),
                     usuario.getCurriculoUrl(),
                     experiencias
             );

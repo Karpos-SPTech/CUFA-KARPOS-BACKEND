@@ -8,6 +8,8 @@ import cufa.conecta.com.br.model.EmpresaData;
 import cufa.conecta.com.br.resources.empresa.dao.EmpresaDao;
 import cufa.conecta.com.br.resources.empresa.entity.EmpresaEntity;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -69,6 +71,8 @@ public class EmpresaRepository {
     return empresaDao.findById(id)
             .orElseThrow(() -> new EmpresaNotFoundException("Empresa com ID " + id + " não encontrada"));
   }
+
+  public Optional<EmpresaEntity> findByEmail(String email){return empresaDao.findByEmail(email);}
 
   public void atualizarDados(EmpresaData empresaAtualizada) {
     EmpresaEntity empresaAtual =
