@@ -81,11 +81,14 @@ public class EmpresaController implements EmpresaControllerDoc {
     service.atualizarEmpresa(empresaAtualizada);
   }
 
-  @DeleteMapping("/{id}")
+  @PatchMapping("/{id}")
   @SecurityRequirement(name = "Bearer")
   @ResponseStatus(HttpStatus.NO_CONTENT)
-  public void deletarEmpresa(@PathVariable Long id) {
-    service.deletar(id);
+  public void atualizarParcialmente(@PathVariable Long id, @RequestBody @Valid EmpresaPatchRequestDto empresaDto) {
+    EmpresaData empresaParcial = empresaDto.toModel();
+    empresaParcial.setId(id);
+
+    service.atualizarParcial(empresaParcial);
   }
 
   @PatchMapping("/biografia")
