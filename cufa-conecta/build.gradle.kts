@@ -8,16 +8,9 @@ plugins {
 group = "cufa.conecta.com.br"
 version = "0.0.1-SNAPSHOT"
 
-
 java {
 	toolchain {
 		languageVersion.set(JavaLanguageVersion.of(21))
-	}
-}
-
-configurations {
-	compileOnly {
-		extendsFrom(configurations.annotationProcessor.get())
 	}
 }
 
@@ -37,6 +30,8 @@ dependencies {
 
 	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
+	implementation("com.google.api-client:google-api-client:2.5.0")
+	implementation("com.google.oauth-client:google-oauth-client-jetty:1.34.1")
 
 	// jwt
 	implementation("io.jsonwebtoken:jjwt-api:0.11.5")

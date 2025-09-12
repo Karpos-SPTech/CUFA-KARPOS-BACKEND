@@ -1,87 +1,97 @@
 package cufa.conecta.com.br.application.dto.response.empresa;
 
 public class EmpresaResponseDto {
-    Long id;
-    String nome;
-    String email;
-    String cep;
-    String numero;
-    String endereco;
-    String cnpj;
-    String area;
+  Long id;
+  String nome;
+  String email;
+  String cep;
+  String numero;
+  String endereco;
+  String cnpj;
+  String area;
+  String biografia;
 
-    public EmpresaResponseDto(Long id, String nome, String email, String cep, String numero, String endereco, String cnpj, String area) {
-        this.id = id;
-        this.nome = nome;
-        this.email = email;
-        this.cep = cep;
-        this.numero = numero;
-        this.endereco = endereco;
-        this.cnpj = cnpj;
-        this.area = area;
-    }
+  public EmpresaResponseDto(Long id, String nome, String email, String cep, String numero, String endereco, String cnpj, String area, String biografia) {
+    this.id = id;
+    this.nome = nome;
+    this.email = email;
+    this.cep = cep;
+    this.numero = numero;
+    this.endereco = endereco;
+    this.cnpj = cnpj;
+    this.area = area;
+    this.biografia = biografia;
+  }
 
-    public Long getId() {
-        return id;
-    }
+  public String getBiografia() {
+    return biografia;
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public void setBiografia(String biografia) {
+    this.biografia = biografia;
+  }
 
-    public String getNome() {
-        return nome;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public String getEmail() {
-        return email;
-    }
+  public String getNome() {
+    return nome;
+  }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+  public void setNome(String nome) {
+    this.nome = nome;
+  }
 
-    public String getCep() {
-        return cep;
-    }
+  public String getEmail() {
+    return email;
+  }
 
-    public void setCep(String cep) {
-        this.cep = cep;
-    }
+  public void setEmail(String email) {
+    this.email = email;
+  }
 
-    public String getNumero() {
-        return numero;
-    }
+  public String getCep() {
+    return cep;
+  }
 
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
+  public void setCep(String cep) {
+    this.cep = cep;
+  }
 
-    public String getEndereco() {
-        return endereco;
-    }
+  public String getNumero() {
+    return numero;
+  }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
+  public void setNumero(String numero) {
+    this.numero = numero;
+  }
 
-    public String getCnpj() {
-        return cnpj;
-    }
+  public String getEndereco() {
+    return endereco;
+  }
 
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
-    }
+  public void setEndereco(String endereco) {
+    this.endereco = endereco;
+  }
 
-    public String getArea() {
-        return area;
-    }
+  public String getCnpj() {
+    return cnpj;
+  }
 
-    public void setArea(String area) {
-        this.area = area;
-    }
+  public void setCnpj(String cnpj) {
+    this.cnpj = cnpj;
+  }
+
+  public String getArea() {
+    return area;
+  }
+
+  public void setArea(String area) {
+    this.area = area;
+  }
 }

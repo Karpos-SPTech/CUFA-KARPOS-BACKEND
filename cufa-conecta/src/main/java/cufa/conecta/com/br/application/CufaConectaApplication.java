@@ -12,7 +12,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @ComponentScan("cufa.conecta.com.br")
 public class CufaConectaApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(CufaConectaApplication.class, args);
-	}
+  public static void main(String[] args) {
+    SpringApplication.run(CufaConectaApplication.class, args);
+  }
 }
