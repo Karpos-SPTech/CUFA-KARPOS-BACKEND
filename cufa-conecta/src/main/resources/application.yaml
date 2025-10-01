@@ -4,9 +4,9 @@ spring:
     hibernate:
       ddl-auto: none
   datasource:
-    url: jdbc:mysql://localhost:3306/cufaConecta
-    username: admCufa
-    password: cufaConecta@2025
+      url: ${DB_URL}
+      username: ${DB_USER}
+      password: ${DB_PASS}
   jackson:
     default-property-inclusion: non_null
 
