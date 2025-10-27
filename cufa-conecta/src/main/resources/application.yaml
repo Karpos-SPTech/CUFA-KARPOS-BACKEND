@@ -1,3 +1,6 @@
+server:
+  port: 8080
+
 spring:
   jpa:
     show-sql: false
@@ -11,10 +14,11 @@ spring:
     password: cufaConecta@2025
   jackson:
     default-property-inclusion: non_null
-#  flyway:
-#    enabled: true
-#    locations:
-#      classpath: db/migration
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: myuser
+    password: secret
 
 jwt:
   validity: 86400

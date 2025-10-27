@@ -45,6 +45,20 @@ public class UsuarioEntity {
   @Column
   String curriculoUrl;
 
+  @Column(name="foto_perfil_url")
+  String fotoPerfilUrl;
+
+  @Column(name="foto_capa_url")
+  String fotoCapaUrl;
+
+  public String getFotoPerfilUrl() { return fotoPerfilUrl; }
+
+  public void setFotoPerfilUrl(String fotoPerfilUrl) { this.fotoPerfilUrl = fotoPerfilUrl; }
+
+  public String getFotoCapaUrl() { return fotoCapaUrl; }
+
+  public void setFotoCapaUrl(String fotoCapaUrl) { this.fotoCapaUrl = fotoCapaUrl; }
+
   public String getCurriculoUrl() {
     return curriculoUrl;
   }

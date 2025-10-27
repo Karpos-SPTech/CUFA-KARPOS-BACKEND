@@ -1,8 +1,10 @@
 package cufa.conecta.com.br.domain.service.usuario;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import cufa.conecta.com.br.application.dto.request.usuario.CandidaturaRequestDto;
 import cufa.conecta.com.br.application.dto.response.empresa.PublicacaoResponseDto;
 import cufa.conecta.com.br.application.dto.response.usuario.CandidatoDto;
+import cufa.conecta.com.br.application.dto.response.usuario.CandidaturaFilaDto;
 import cufa.conecta.com.br.application.dto.response.usuario.CandidaturaResponseDto;
 import cufa.conecta.com.br.application.dto.response.usuario.ExperienciaResponseDto;
 import cufa.conecta.com.br.resources.empresa.dao.EmpresaDao;
@@ -17,6 +19,7 @@ import cufa.conecta.com.br.resources.user.entity.CandidaturaEntity;
 import cufa.conecta.com.br.resources.user.entity.ExperienciasEntity;
 import cufa.conecta.com.br.resources.user.entity.UsuarioEntity;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -24,6 +27,9 @@ import java.time.Period;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import static cufa.conecta.com.br.config.RabbitConfig.QUEUE_CANDIDATURAS;
+import static cufa.conecta.com.br.config.RabbitConfig.QUEUE_NAME;
 
 @Service
 public class CandidaturaService {
@@ -33,14 +39,16 @@ public class CandidaturaService {
   private final ExperienciasDao expDao;
   private final EmpresaDao empresaDao;
   private final CandidaturaDao dao;
+  private final RabbitTemplate rabbitTemplate;
 
-    public CandidaturaService(CandidaturaRepository repository, UsuarioDao userDao, PublicacaoDao publiDao, ExperienciasDao expDao, EmpresaDao empresaDao, CandidaturaDao dao) {
+    public CandidaturaService(CandidaturaRepository repository, UsuarioDao userDao, PublicacaoDao publiDao, ExperienciasDao expDao, EmpresaDao empresaDao, CandidaturaDao dao, RabbitTemplate rabbitTemplate) {
         this.repository = repository;
         this.userDao = userDao;
         this.publiDao = publiDao;
         this.expDao = expDao;
         this.empresaDao = empresaDao;
         this.dao = dao;
+        this.rabbitTemplate = rabbitTemplate;
     }
 
     public void criarCandidatura(CandidaturaRequestDto candidaturaDto) {
@@ -62,6 +70,9 @@ public class CandidaturaService {
         );
 
         repository.criarCandidatura(candidatura);
+
+        CandidaturaFilaDto filaDto = new CandidaturaFilaDto(usuario.getNome(), publicacao.getTitulo());
+        rabbitTemplate.convertAndSend("fila-candidaturas", filaDto);
     }
 
     public CandidaturaResponseDto listarCandidatosPorVaga(Long vagaId) {
@@ -113,6 +124,8 @@ public class CandidaturaService {
                 candidatos.size(),
                 candidatos
         );
+
+
     }
 
     public boolean verificarCandidaturaExistente(Long userId, Long vagaId) {

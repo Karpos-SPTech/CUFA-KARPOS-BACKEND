@@ -48,7 +48,7 @@ public class GerenciadorTokenJwt {
         .setSubject(authentication.getName()) // subject padrão (ex: username)
         .signWith(secretKey)
         .setIssuedAt(new Date())
-        .setExpiration(new Date(System.currentTimeMillis() + jwtTokenValidity * 1000))
+        .setExpiration(new Date(System.currentTimeMillis() + jwtTokenValidity * 10000))
         .compact();
   }
 

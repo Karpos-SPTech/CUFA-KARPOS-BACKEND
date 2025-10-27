@@ -40,6 +40,12 @@ dependencies {
 
 	//Swagger
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.4")
+
+    // Rabbit
+    implementation("org.springframework.boot:spring-boot-starter-amqp")
+
+    // Docker
+    runtimeOnly("org.springframework.boot:spring-boot-docker-compose")
 }
 
 tasks.withType<Test> {

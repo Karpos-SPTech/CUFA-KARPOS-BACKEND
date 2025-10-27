@@ -85,4 +85,5 @@ public class CandidaturaEntity {
     public void setDtCandidatura(LocalDate dtCandidatura) {
         this.dtCandidatura = dtCandidatura;
     }
+
 }
