@@ -1,21 +1,25 @@
+server:
+  port: 8080
+
 spring:
   jpa:
     show-sql: false
     hibernate:
       ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
   datasource:
       url: ${DB_URL}
       username: ${DB_USER}
       password: ${DB_PASS}
   jackson:
     default-property-inclusion: non_null
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: myuser
+    password: secret
 
 jwt:
-  validity: 3600000
+  validity: 86400
   secret: RXhpc3RlIHVtYSB0ZW9yaWEgcXVlIGRpeiBxdWUsIHNlIHVtIGRpYSBhbGd16W0gZGVzY29icmlyIGV4YX]
-#
-#  flyway:
-#    enabled: true
-#    locations:
-#      classpath: db/migration
-#      default-schema: cufa
